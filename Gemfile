@@ -45,7 +45,6 @@ gem 'rails_12factor', group: :production
 gem 'kaminari', '~> 0.14'
 gem 'shoulda', '~> 3.5.0'
 gem 'carrierwave'
-gem 'cloudinary'
 gem 'ffaker'
 gem 'faker'
 # gem 'ransack'
