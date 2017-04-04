@@ -17,8 +17,13 @@ class Signin extends Component {
 
     render() {
         return (
+            <div>
+            <div className="jumbotron text-center">
+                <h1>Coachstr</h1> 
+                <p>We're Talking About Practice</p>
+            </div>
             <div className="col s6 m6 container signinCard text-center">
-                <h2 className="header signinCard">Sign In</h2>
+                {/*<h2 className="header signinCard">Sign In</h2>*/}
                 <div className="card horizontal">
                     <div className="card-image">
                         <img src="https://unsplash.it/200" id="signinImage" />
@@ -45,6 +50,7 @@ class Signin extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
