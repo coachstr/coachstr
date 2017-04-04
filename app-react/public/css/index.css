@@ -3,12 +3,16 @@
 }
 
 body {
-    background-image: url("../img/background.png");
+    background-image: url("../img/background2x.png");
     /*background: cornflowerblue;*/
 }
 
 img {
     width: 100%;
+}
+
+.jumbotron {
+    background: linear-gradient(to right, darkorange 0%, orange 100%);
 }
 
 .signinCard {
@@ -17,4 +21,18 @@ img {
 
 #signinImage {
     height: 100%;
+}
+
+.btn-floating {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.leftColumn {
+    background: red;
+}
+
+.rightColumn {
+    background: orange;
 }
