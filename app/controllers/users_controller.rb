@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def create
-  @user = User.new(user_params)
+    @user = User.new(user_params)
     if @user.save
       UserMailer.signup(@user).deliver
       session[:user_id] = @user.id
@@ -18,4 +18,9 @@ class UsersController < ApplicationController
     params.permit(:name, :email, :password)
   end
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> updated UsersController
 end
