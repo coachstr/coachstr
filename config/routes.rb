@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root 'application#static'
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   scope 'api' do
     resources :tags do
@@ -18,4 +21,7 @@ Rails.application.routes.draw do
   put     '/api/drill_plans/:id'  =>  'drill_plans#update'
   delete  '/api/drill_plans/:id'  =>  'drill_plans#destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # fallback route
+  get "/:param1(/:param2)(/:param3)" => "application#static"
 end
