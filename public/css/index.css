@@ -11,6 +11,10 @@ img {
     width: 100%;
 }
 
+.jumbotron {
+    background: linear-gradient(to right, darkorange 0%, orange 100%);
+}
+
 .signinCard {
     /*width: 500px;*/
 }
