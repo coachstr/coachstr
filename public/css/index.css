@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../img/background.png");
+    /*background: cornflowerblue;*/
+}
+
+img {
+    width: 100%;
+}
+
+.signinCard {
+    /*width: 500px;*/
+}
+
+#signinImage {
+    height: 100%;
+}
