@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170403234845) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+    t.index ["taggable_id", "taggable_type"], name: "index_taggings_on_taggable_id_and_taggable_type", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
