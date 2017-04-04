@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   scope 'api' do
     resources :tags do
       resources :drills, only: [:index]
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 
   get     '/api/login'            =>  'sessions#new', as: :login
   post    '/api/login'            =>  'sessions#create'
-  delete  'api/logout'            =>  'sessions#destroy', as: :logout
   post    '/api/drill_plans'      =>  'drill_plans#create'
   patch   '/api/drill_plans/:id'  =>  'drill_plans#update'
   put     '/api/drill_plans/:id'  =>  'drill_plans#update'
