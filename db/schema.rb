@@ -10,29 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403234845) do
+ActiveRecord::Schema.define(version: 20170404154714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drill_plans", force: :cascade do |t|
+    t.integer  "drill_id"
+    t.integer  "plan_id"
+    t.string   "order_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drill_id"], name: "index_drill_plans_on_drill_id", using: :btree
+    t.index ["plan_id"], name: "index_drill_plans_on_plan_id", using: :btree
+  end
 
   create_table "drills", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "duration"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.string   "drill_pic"
+    t.string   "default_avatar", default: "http://i.imgur.com/ZfLgPdV.png"
   end
 
   create_table "organizations", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "org_pic"
+    t.string   "default_avatar"
   end
 
   create_table "plans", force: :cascade do |t|
     t.string   "title"
     t.integer  "total_duration"
-    t.datetime "start_time"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -60,9 +73,13 @@ ActiveRecord::Schema.define(version: 20170403234845) do
     t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "profile_pic"
+    t.string   "default_avatar"
     t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
   end
 
+  add_foreign_key "drill_plans", "drills"
+  add_foreign_key "drill_plans", "plans"
   add_foreign_key "taggings", "tags"
   add_foreign_key "users", "organizations"
 end
