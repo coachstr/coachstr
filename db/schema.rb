@@ -29,18 +29,18 @@ ActiveRecord::Schema.define(version: 20170404154714) do
     t.string   "title"
     t.text     "description"
     t.integer  "duration"
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "drill_pic"
-    t.string   "default_avatar", default: "http://i.imgur.com/ZfLgPdV.png"
+    t.string   "default_avatar"
   end
 
   create_table "organizations", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.string   "org_pic"
-    t.string   "default_avatar"
+    t.string   "default_avatar", default: "http://i.imgur.com/ZfLgPdVt.png"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(version: 20170404154714) do
     t.string   "email"
     t.string   "password_digest"
     t.integer  "organization_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
     t.string   "profile_pic"
-    t.string   "default_avatar"
+    t.string   "default_avatar",  default: "http://i.imgur.com/lsyjVvwt.png"
     t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
   end
 
