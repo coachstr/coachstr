@@ -2,22 +2,41 @@ class DrillsController < ApplicationController
 
   def index
     if current_user
-      @notes = current_user.drills
+      @drills = current_user.drills
     else
-      @notes = {error: "You must be logged in to view drills."}
+      render json: {:error => "need to be logged in"}
+      @errors = {:errors => error}
+      render json: @errors, status: 400
     end
-    render json: @notes
   end
 
 
   def create
     if current_user
-      
+      @drill = Drill.new(drill_params)
+      if @drill.save
+        render json: @drill
+      else
+        error = @drill.errors.full_messages.collect do |error_message|
+          {:error => error_message}
+        end
+        @errors = {:errors => error}
+        render json: @errors, status: 400
+      end
+    else
+      render json: {:error => "need to be logged in"}
+      @errors = {:errors => error}
+      render json: @errors, status: 400
+    end
   end
 
 
 
   private
+
+  def find_drill
+
+  end
 
   def drill_params
     params[:user_id] = User.find_by(token: params[:token]).id
