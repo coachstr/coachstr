@@ -1,5 +1,7 @@
 class DrillsController < ApplicationController
 
+  before_action :find_drill, only: [:show, :update, :destroy]
+
   def index
     if current_user
       @drills = current_user.drills
@@ -9,7 +11,6 @@ class DrillsController < ApplicationController
       render json: @errors, status: 400
     end
   end
-
 
   def create
     if current_user
@@ -30,12 +31,24 @@ class DrillsController < ApplicationController
     end
   end
 
+  def show
+    # find_drill
+    render json: @drill, include: @drill.tags
+  end
 
+  def update
+    # find_drill
+  end
+
+  def destroy
+    # find_drill
+    @drill.destroy
+  end
 
   private
 
   def find_drill
-
+    @drill = Drill.find(params['id'])
   end
 
   def drill_params
@@ -54,8 +67,6 @@ class DrillsController < ApplicationController
     end
     pre_drill_params[:tags] = tags
     return pre_drill_params
-  end
-
   end
 
 end
