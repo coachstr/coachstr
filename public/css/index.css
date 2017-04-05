@@ -3,8 +3,13 @@
 }
 
 body {
-    background-image: url("../img/background.png");
+    background-image: url("../img/background2.png");
+    font-family: 'Oswald', sans-serif;
     /*background: cornflowerblue;*/
+}
+
+.newFont {
+    font-family: 'Oswald', sans-serif;
 }
 
 img {
@@ -21,4 +26,44 @@ img {
 
 #signinImage {
     height: 100%;
+}
+
+.btn-floating {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
+
+.leftColumn {
+    /*background: red;*/
+}
+
+.rightColumn {
+    /*background: orange;*/
+}
+
+.horizontalCard {
+    /*height: 200px;*/
+}
+
+/*.horizontalCardImage {
+    height: 100%;
+}*/
+
+.cardFab {
+    position: absolute;
+    bottom: 50px;
+}
+
+.backButton {
+    display: block;
+}
+
+.planItems {
+    cursor: pointer;
+    margin-top: 27px;
+}
+
+.deletePlanItem {
+    cursor: pointer;
 }

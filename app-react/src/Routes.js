@@ -10,14 +10,18 @@ import { Router, Route, browserHistory } from 'react-router'
 import Main from './Main'
 import Signin from './Signin'
 import Signup from './Signup'
+import Plans from './Plans'
+import Drill from './Drill'
 
 // Configure routes
 class Routes extends React.Component {
     render() {
         return <Router history={browserHistory}>
-            <Route path="/" component={Main} />
-            <Route path="/signin" component={Signin} />
+            <Route path="/drills" component={Main} />
+            <Route path="/" component={Signin} />
             <Route path="/signup" component={Signup} />
+            <Route path="/plans" component={Plans} />
+            <Route path="/drill" component={Drill} />
         </Router>
     }
 }
