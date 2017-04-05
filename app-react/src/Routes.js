@@ -17,8 +17,8 @@ import Drill from './Drill'
 class Routes extends React.Component {
     render() {
         return <Router history={browserHistory}>
-            <Route path="/" component={Main} />
-            <Route path="/signin" component={Signin} />
+            <Route path="/drills" component={Main} />
+            <Route path="/" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/plans" component={Plans} />
             <Route path="/drill" component={Drill} />
