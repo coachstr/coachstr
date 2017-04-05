@@ -38,7 +38,7 @@ class Signin extends Component {
                             </form>
                             <form action="#">
                                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input className="mdl-textfield__input" type="text" id="password" />
+                                    <input className="mdl-textfield__input" type="text" id="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
                                     <label className="mdl-textfield__label" htmlFor="password">Password</label>
                                 </div>
                             </form>
