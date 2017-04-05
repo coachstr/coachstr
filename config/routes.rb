@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'application#static'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
 
   scope 'api' do
@@ -8,8 +8,13 @@ Rails.application.routes.draw do
       resources :drills, only: [:index]
       resources :plans, only: [:index]
     end
-    resources :plans
-    resources :drills
+    resources :plans do
+      resources :share, only: [:create]
+    end
+    resources :drills do
+      resources :share, only: [:create]
+    end
+
     resources :users
     resources :organizations
   end
