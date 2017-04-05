@@ -9,6 +9,8 @@ class User < ApplicationRecord
                     :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/ }
   validate :default_avatar, require: false
 
+  has_secure_password
+  has_secure_token :token
 
   def personage(version = :standard)
     if profile_pic?
