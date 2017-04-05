@@ -45,7 +45,7 @@ class Signin extends Component {
                         </div>
                         <div className="card-action">
                             <div className="waves-effect waves-light btn-large" onClick={() => browserHistory.push('/')}>Sign In</div>
-                            <br/>
+                            <br/><br/>  
                             <div className="waves-effect waves-light " onClick={() => browserHistory.push('/signup')}>Sign Up</div>
                         </div>
                     </div>

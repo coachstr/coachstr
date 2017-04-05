@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url("../img/background2x.png");
+    background-image: url("../img/background2.png");
     /*background: cornflowerblue;*/
 }
 
@@ -24,7 +24,7 @@ img {
 }
 
 .btn-floating {
-    position: absolute;
+    position: fixed;
     bottom: 16px;
     right: 16px;
 }
@@ -35,4 +35,25 @@ img {
 
 .rightColumn {
     background: orange;
+}
+
+.horizontalCard {
+    /*height: 200px;*/
+}
+
+/*.horizontalCardImage {
+    height: 100%;
+}*/
+
+.cardFab {
+    position: absolute;
+    bottom: 50px;
+}
+
+.backButton {
+    display: block;
+}
+
+.deletePlanItem {
+    cursor: pointer;
 }

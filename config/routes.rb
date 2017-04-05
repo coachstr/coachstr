@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'application#static'
-
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
 
@@ -31,5 +30,4 @@ Rails.application.routes.draw do
 
   # fallback route
   get "/:param1(/:param2)(/:param3)" => "application#static"
-
 end
