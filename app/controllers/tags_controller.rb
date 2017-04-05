@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-
+  before_action :find_tag, only: [:show, :destroy]
   def index
     @tags = Tag.all
     render json: @tags
