@@ -1,5 +1,4 @@
 class DrillsController < ApplicationController
-
   before_action :find_drill, only: [:show, :update, :destroy]
 
   def index
