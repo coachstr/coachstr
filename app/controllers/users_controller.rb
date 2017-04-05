@@ -18,9 +18,8 @@ class UsersController < ApplicationController
     params.permit(:name, :email, :password)
   end
 
-<<<<<<< HEAD
-=======
+  def find_user
+    @user = User.find_by(params['id'])
+  end
 
-
->>>>>>> updated UsersController
 end

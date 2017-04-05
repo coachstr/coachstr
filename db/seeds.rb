@@ -10,7 +10,7 @@ puts "Start seeding"
 tags = ['Offense', 'Defense', 'Zone', 'Man', 'Team', 'Individual', 'Dribbling', 'Passing', 'Shooting', 'Rebound']
 
 tags.each do |tag|
-  Tag.new(name: tag)
+  Tag.create(name: tag)
 end
 
 
