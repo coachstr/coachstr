@@ -59,12 +59,18 @@ class DrillsController < ApplicationController
                              :tags,
                              :user_id,
                              :default_avatar,
-                             :drill_pic)
+                             :drill_pic,
+                             :plans)
     tags = Array.new
     pre_drill_params[:tags].split(%r{,\s*}).each do |name|
       tags << Tag.find_or_create_by(name: name)
     end
     pre_drill_params[:tags] = tags
+    plans = Array.new
+    pre_drill_params[:plans].split(%r{,\s*}).each do |title|
+    plans << Plan.find_by(title: title)
+    end
+    pre_drill_params[:plans] = plans
     return pre_drill_params
   end
 

@@ -5,7 +5,7 @@ class PlanSerializer < ActiveModel::Serializer
   has_many :tags, through: :taggings
   has_many :drill_plans
   has_many :drills, through: :drill_plans
-  
+
   def drills
     titles = []
     object.drills.pluck(:title).each do |title|
