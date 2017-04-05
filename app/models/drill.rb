@@ -1,7 +1,8 @@
 class Drill < ApplicationRecord
   has_many :drill_plans
   has_many :plans, through: :drill_plans
-  has_many :tags, as: :taggable
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
   mount_uploader :drill_pic, DrillUploader
 
