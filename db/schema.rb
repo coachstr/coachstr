@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404154714) do
+ActiveRecord::Schema.define(version: 20170405194123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170404154714) do
     t.datetime "updated_at",     null: false
     t.string   "drill_pic"
     t.string   "default_avatar"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_drills_on_user_id", using: :btree
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 20170404154714) do
     t.integer  "total_duration"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_plans_on_user_id", using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -75,11 +79,14 @@ ActiveRecord::Schema.define(version: 20170404154714) do
     t.datetime "updated_at",                                                  null: false
     t.string   "profile_pic"
     t.string   "default_avatar",  default: "http://i.imgur.com/lsyjVvwt.png"
+    t.string   "token"
     t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
   end
 
   add_foreign_key "drill_plans", "drills"
   add_foreign_key "drill_plans", "plans"
+  add_foreign_key "drills", "users"
+  add_foreign_key "plans", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "users", "organizations"
 end
