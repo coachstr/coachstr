@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  belongs_to :organization
+  belongs_to :organization, optional: true
 
   mount_uploader :profile_pic, UserUploader
 
@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     uniqueness: true,
                     :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/ }
-  validate :default_avatar, require: false
+  validates :default_avatar, require: false
 
   has_secure_password
   has_secure_token :token
