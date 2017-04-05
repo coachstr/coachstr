@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+tags = ['Offense', 'Defense', 'Zone', 'Man', 'Team', 'Individual', 'Dribbling', 'Passing', 'Shooting', 'Rebound']
+
+tags.each do |tag|
+  Tag.new(name: tag)
+end

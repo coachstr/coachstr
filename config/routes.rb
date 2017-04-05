@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'application#static'
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
 
   scope 'api' do
