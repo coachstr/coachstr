@@ -6,22 +6,14 @@ class Header extends Component {
 
 
     render() {
-        return (<nav className="nav-extended">
-            <div className="nav-wrapper">
-                <a href="#!" className="brand-logo">Logo</a>
-                <ul className="right hide-on-med-and-down">
-                    <li><a>A link</a></li>
-                    <li><a>A second link</a></li>
-                    <li><a>A third link</a></li>
-                </ul>
-            </div>
-            <div className="nav-content">
-                <span className="nav-title">Title</span>
-                <a className="btn-floating btn-large halfway-fab waves-effect waves-light teal">
-                    <i className="material-icons">add</i>
-                </a>
-            </div>
-        </nav>
+        return (  <nav>
+    <div className="nav-wrapper center orange darken-1">
+      <a href="#" className="brand-logo center black-text">Coachstr</a>
+      <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <li><a className="black-text" onClick={() => browserHistory.push('/signin')}>Sign In</a></li>
+      </ul>
+    </div>
+  </nav>
         )
     }
 }
