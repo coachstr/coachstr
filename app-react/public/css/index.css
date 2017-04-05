@@ -4,7 +4,12 @@
 
 body {
     background-image: url("../img/background2.png");
+    font-family: 'Oswald', sans-serif;
     /*background: cornflowerblue;*/
+}
+
+.newFont {
+    font-family: 'Oswald', sans-serif;
 }
 
 img {
@@ -30,11 +35,11 @@ img {
 }
 
 .leftColumn {
-    background: red;
+    /*background: red;*/
 }
 
 .rightColumn {
-    background: orange;
+    /*background: orange;*/
 }
 
 .horizontalCard {
@@ -52,6 +57,11 @@ img {
 
 .backButton {
     display: block;
+}
+
+.planItems {
+    cursor: pointer;
+    margin-top: 27px;
 }
 
 .deletePlanItem {
