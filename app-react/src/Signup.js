@@ -78,7 +78,7 @@ class Signup extends Component {
                         <div className="card-action">
                             <div className="waves-effect waves-light btn-large" onClick={this.signup}>Sign Up</div>
                             <br/><br/>
-                            <div className="waves-effect waves-light " nClick={() => browserHistory.push('/drills')}>Sign In</div>
+                            <div className="waves-effect waves-light " onClick={() => browserHistory.push('/')}>Sign In</div>
                         </div>
                     </div>
                 </div>
