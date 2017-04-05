@@ -47,7 +47,7 @@ class AddDrill extends React.Component {
             <Header/>
             <div className="container">
                 <br/>
-            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/')}><i className="material-icons left">fast_rewind</i>Back</a>
+            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills')}><i className="material-icons left">fast_rewind</i>Back</a>
             <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
             <div className="form-group">
                 <label htmlFor="instructions">Instructions</label>
