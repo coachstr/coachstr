@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405194123) do
+ActiveRecord::Schema.define(version: 20170406171705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 20170405194123) do
     t.string   "default_avatar"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_drills_on_user_id", using: :btree
+  end
+
+  create_table "lib_drills", force: :cascade do |t|
+    t.integer "drill_id"
+    t.integer "library_id"
+    t.index ["drill_id"], name: "index_lib_drills_on_drill_id", using: :btree
+    t.index ["library_id"], name: "index_lib_drills_on_library_id", using: :btree
+  end
+
+  create_table "libraries", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.boolean  "private",    default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_libraries_on_user_id", using: :btree
   end
 
   create_table "plans", force: :cascade do |t|
@@ -77,6 +93,9 @@ ActiveRecord::Schema.define(version: 20170405194123) do
   add_foreign_key "drill_plans", "drills"
   add_foreign_key "drill_plans", "plans"
   add_foreign_key "drills", "users"
+  add_foreign_key "lib_drills", "drills"
+  add_foreign_key "lib_drills", "libraries"
+  add_foreign_key "libraries", "users"
   add_foreign_key "plans", "users"
   add_foreign_key "taggings", "tags"
 end

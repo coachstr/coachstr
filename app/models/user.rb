@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :libraries
+  has_many :plans
+  has_many :drills
 
   mount_uploader :profile_pic, UserUploader
 
