@@ -12,6 +12,15 @@ class DrillPlansController < ApplicationController
 
   def update
     # find_drill_plan
+    if @drill_plan.update!(drill_plan_params)
+      render json: @drill_plan
+    else
+      error = @drill_plan.errors.full_messages.collect do |error_message|
+        {:error => error_message}
+      end
+      @errors = {:errors => error}
+      render json: @errors, status: 400
+    end
   end
 
   def destroy

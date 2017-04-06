@@ -24,7 +24,7 @@ class DrillsController < ApplicationController
         render json: @errors, status: 400
       end
     else
-      render json: {:error => "need to be logged in"}
+      error = {:error => "need to be logged in"}
       @errors = {:errors => error}
       render json: @errors, status: 400
     end
@@ -37,6 +37,21 @@ class DrillsController < ApplicationController
 
   def update
     # find_drill
+    if current_user
+      if @drill.update!(drill_params)
+        render json: @drill
+      else
+        error = @drill.errors.full_messages.collect do |error_message|
+          {:error => error_message}
+        end
+        @errors = {:errors => error}
+        render json: @errors, status: 400
+      end
+    else
+      error = {:error => "need to be logged in"}
+      @errors = {:errors => error}
+      render json: @errors, status: 400
+    end
   end
 
   def destroy

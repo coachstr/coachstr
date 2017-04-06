@@ -7,6 +7,7 @@ class TagsController < ApplicationController
 
   def show
     # find_tag
+    render json: @tag
   end
 
   def create

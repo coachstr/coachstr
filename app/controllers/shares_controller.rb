@@ -1,4 +1,4 @@
-class ShareController < ApplicationController
+class SharesController < ApplicationController
 
   before_action :find_plan
   before_action :find_drill
@@ -16,7 +16,6 @@ class ShareController < ApplicationController
         flash[:success] = "Shared"
       end
     end
-  end
   end
 
 

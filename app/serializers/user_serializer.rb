@@ -1,10 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :name, :email, :token
-  has_one :organization
+  attributes :id, :name, :email, :token
 end
-
-
-
-# super user invite model
-#
-# view only link for drills and plans
