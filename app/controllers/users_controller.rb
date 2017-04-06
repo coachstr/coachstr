@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # UserMailer.signup(@user).deliver
-      session[:user_id] = @user.id
+      @user.libraries.create!(title: "My Library")
       render json: @user, serializer: UserExpandedSerializer
     else
       render json: @user.errors.full_messages, status: 400
