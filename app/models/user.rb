@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  belongs_to :organization, optional: true
 
   mount_uploader :profile_pic, UserUploader
 
