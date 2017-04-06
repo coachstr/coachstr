@@ -5,7 +5,7 @@ class PlansController < ApplicationController
     if current_user
       @plans = current_user.plans
     else
-      render json: {:error => "need to be logged in"}
+      error = {:error => "need to be logged in"}
       @errors = {:errors => error}
       render json: @errors, status: 400
     end

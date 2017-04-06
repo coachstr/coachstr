@@ -5,7 +5,7 @@ class DrillsController < ApplicationController
     if current_user
       @drills = current_user.drills
     else
-      render json: {:error => "need to be logged in"}
+      error = {:error => "need to be logged in"}
       @errors = {:errors => error}
       render json: @errors, status: 400
     end
