@@ -1,3 +1,3 @@
 class LibrarySerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :title, :private
 end
