@@ -13,6 +13,7 @@ class Card extends React.Component {
 
     this.addToPlan = this.addToPlan.bind(this)
     this.viewDrill = this.viewDrill.bind(this)
+    this.setFields = this.setFields.bind(this)
 
   }
 
@@ -24,11 +25,25 @@ class Card extends React.Component {
       browserHistory.push('/drill')
   }
 
+    setFields() {
+        if (this.props.title !== undefined) {
+            var title = this.props.title
+            var description = this.props.description
+            var drillObject = {
+                title: title,
+                description: description
+            }
+            browserHistory.push('/drill')
+            console.log(drillObject)
+            return drillObject
+        }
+    }
+
     // componentWillMount() {
     //     this.props.getItems(this.props.params.itemId)
     // }
     render() {
-        return <div className="col-sm-6 col-m-4" onClick={this.viewDrill}>
+        return <div className="col-sm-6 col-m-4" onClick={this.setFields}>
             <div className="card blue-grey darken-1 small">
                 <div className="card-content white-text">
                     <a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>

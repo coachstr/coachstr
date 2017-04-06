@@ -10,14 +10,19 @@ class AddDrill extends React.Component {
         super(props)
 
         this.onClick = this.onClick.bind(this)
+        this.addTag = this.addTag.bind(this)
 
         this.state = {
             title: '',
             body: '',
             link: '',
-            tags: ''
+            tags: []
         }
 
+    }
+
+    componentWillMount() {
+        console.log(this.props.setFields)
     }
 
     onClick(addDrill) {
@@ -29,8 +34,18 @@ class AddDrill extends React.Component {
             title: '',
             body: '',
             link: '',
-            tags: ''
         })
+    }
+
+    addTag(tag) {
+        if (this.state.tags.length === 0) {
+        // this.state.tags = []
+        this.setState.tags = this.state.tags.push(tag)
+        console.log("no tags " + this.state.tags)
+        } else {
+            this.setState.tags = this.state.tags.push(tag)
+            console.log("tags " + this.state.tags)
+        }
     }
 
     render() {
@@ -47,7 +62,7 @@ class AddDrill extends React.Component {
             <Header/>
             <div className="container">
                 <br/>
-            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills')}><i className="material-icons left">fast_rewind</i>Back</a>
+            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/')}><i className="material-icons left">fast_rewind</i>Back</a>
             <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
             <div className="form-group">
                 <label htmlFor="instructions">Instructions</label>
@@ -56,14 +71,14 @@ class AddDrill extends React.Component {
             <input type="text" className="form-control" placeholder="Duration (in mins)" value={this.state.link} onChange={(e) => this.setState({ link: e.target.value })} />
 
             <div className="btn-group" role="group" aria-label="..." >
-                <button type="button" className="btn btn-lg">Defense</button>
-                <button type="button" className="btn btn-lg">Dribbling</button>
-                <button type="button" className="btn btn-lg">Man</button>
-                <button type="button" className="btn btn-lg">Offense</button>
-                <button type="button" className="btn btn-lg">Passing</button>
-                <button type="button" className="btn btn-lg">Rebounding</button>
-                <button type="button" className="btn btn-lg">Shooting</button>
-                <button type="button" className="btn btn-lg">Zone</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Defense')} >Defense</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Dribbling')}>Dribbling</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Man')}>Man</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Offense')}>Offense</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Passing')}>Passing</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Rebounding')}>Rebounding</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Shooting')}>Shooting</button>
+                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Zone')}>Zone</button>
             </div>
             </div>
             <br />
