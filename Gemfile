@@ -63,7 +63,6 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails', '~> 4.5'
   gem 'capybara', '~> 2.5'
-  gem 'shoulda'
   gem 'minitest-rails'
 end
 
