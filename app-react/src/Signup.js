@@ -30,10 +30,38 @@ class Signup extends Component {
             alert('You must enter a valid email address')
         } else if (password !== confirmPassword) {
             alert('Your passwords must match')
-        } else {
+        } else { 
+            // fetch goes here
+            fetch('/api/users' , {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+        },
+
+        // Back-end controls the left side, properties, of this object
+        // Front-end controls the variables names and values on the right side
+        body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password,
+        })
+    })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            console.log(response.user.token);
+
+        if (response.user.token) { 
+            sessionStorage.setItem('token', response.user.token)
             browserHistory.push('/drills')
-            }
         }
+        else {
+            alert('Sign Up Error: ' + response)
+        }
+        })
+    }
+}
 
     render() {
         return (

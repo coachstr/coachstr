@@ -56,12 +56,13 @@ ActiveRecord::Schema.define(version: 20170405194123) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.integer  "taggable_id"
     t.string   "taggable_type"
+    t.integer  "taggable_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
     t.index ["taggable_id", "taggable_type"], name: "index_taggings_on_taggable_id_and_taggable_type", using: :btree
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
