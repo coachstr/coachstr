@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :share, only: [:create]
     end
   end
+  
   get     '/api/login'                           =>  'sessions#new', as: :login
   post    '/api/login'                           =>  'sessions#create'
   post    '/api/plans/:plan_id/drill_plans'      =>  'drill_plans#create'

@@ -7,12 +7,51 @@ class Signin extends Component {
     constructor(props) {
         super(props)
 
-        // this.signin = this.signin.bind(this)
+        this.signin = this.signin.bind(this)
 
         this.state= {
             email: '',
             password: ''
         }
+    }
+
+    signin() {
+        var email = this.state.email
+        var password = this.state.password
+
+        if(email === '' || password === '') {
+            alert('You must enter your email and password')
+        } else {
+            fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+
+            .then(function(response) {
+                console.log(response)
+                return response.json()
+            })
+
+            .then(function(response) {
+                console.log(response)
+
+                if (response.user.token) {
+                    sessionStorage.setItem('token', response.user.token)
+                    browserHistory.push('/drills')
+                } else {
+                    alert('There was an error signing in')
+                    console.log('Signin : ' + response.user)
+                }
+            })
+        }
+
     }
 
     render() {
@@ -38,13 +77,13 @@ class Signin extends Component {
                             </form>
                             <form action="#">
                                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input className="mdl-textfield__input" type="text" id="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
+                                    <input className="mdl-textfield__input" type="password" id="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
                                     <label className="mdl-textfield__label" htmlFor="password">Password</label>
                                 </div>
                             </form>
                         </div>
                         <div className="card-action">
-                            <div className="waves-effect waves-light btn-large" onClick={() => browserHistory.push('/drills')}>Sign In</div>
+                            <div className="waves-effect waves-light btn-large" onClick={this.signin}>Sign In</div>
                             <br/><br/>  
                             <div className="waves-effect waves-light " onClick={() => browserHistory.push('/signup')}>Sign Up</div>
                         </div>
