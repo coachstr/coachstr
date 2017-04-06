@@ -4,6 +4,7 @@ class DrillsController < ApplicationController
   def index
     if current_user
       @drills = current_user.drills
+      render json: @drills
     else
       error = {:error => "need to be logged in"}
       @errors = {:errors => error}
@@ -32,7 +33,7 @@ class DrillsController < ApplicationController
 
   def show
     # find_drill
-    render json: @drill, include: @drill.tags
+    render json: @drill #, include: @drill.tags
   end
 
   def update
