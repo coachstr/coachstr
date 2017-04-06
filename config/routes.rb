@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'application#static'
   # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope 'api' do
@@ -14,6 +15,9 @@ Rails.application.routes.draw do
     end
     resources :users
     resources :organizations
+    resources :libraries do
+      resources :share, only: [:create]
+    end
   end
   get     '/api/login'                           =>  'sessions#new', as: :login
   post    '/api/login'                           =>  'sessions#create'
