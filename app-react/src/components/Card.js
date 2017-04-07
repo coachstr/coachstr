@@ -22,7 +22,7 @@ class Card extends React.Component {
   }
 
   viewDrill() {
-      browserHistory.push('/drill')
+      browserHistory.push('/drill/' + this.props.id)
   }
 
     setFields() {
@@ -45,10 +45,9 @@ class Card extends React.Component {
     //     this.props.getItems(this.props.params.itemId)
     // }
     render() {
-        return <div className="col-sm-6 col-m-4" onClick={this.setFields}>
+        return <div className="col-sm-6 col-m-4" >
             <div className="card blue-grey darken-1 small">
-                <div className="card-content white-text">
-                    <a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>
+                <div className="card-content white-text" onClick={this.setFields}>
                     <div className="card-title">{this.props.title}</div>
                     <p>{this.props.description}</p>
                 </div>
@@ -56,6 +55,8 @@ class Card extends React.Component {
                     <div className="chip">Defense</div>
                     <div className="chip">Zone</div>
                 </div>
+
+                 <a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>
             </div>
 
         </div>
