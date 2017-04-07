@@ -65,12 +65,13 @@ class DrillsController < ApplicationController
 
   def after_save_params
     pre_drill_params = params.permit(
-                              :tags,
-                              :plans,
-                              :libraries
+                              :tags => [],
+                              :plans => [],
+                              :libraries => []
     )
 
     # tag list
+    # binding.pry
     if params[:tags].blank?
       pre_drill_params[:tags] = []
     else
