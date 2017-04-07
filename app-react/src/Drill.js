@@ -12,6 +12,14 @@ class AddDrill extends React.Component {
         // this.onClick = this.onClick.bind(this)
         this.addTag = this.addTag.bind(this)
         this.newDrill = this.newDrill.bind(this)
+        this.handleDefense = this.handleDefense.bind(this)
+        this.handleDribbling = this.handleDribbling.bind(this)
+        this.handleMan = this.handleMan.bind(this)
+        this.handleOffense = this.handleOffense.bind(this)
+        this.handlePassing = this.handlePassing.bind(this)
+        this.handleRebounding = this.handleRebounding.bind(this)
+        this.handleShooting = this.handleShooting.bind(this)
+        this.handleZone = this.handleZone.bind(this)
 
         this.state = {
             title: '',
@@ -40,12 +48,45 @@ class AddDrill extends React.Component {
     //         link: '',
     //     })
     // }
-
+    handleDefense(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled"); 
+    }
+    handleDribbling(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    handleMan(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    handleOffense(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    handlePassing(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    handleRebounding(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    handleShooting(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    handleZone(tag){
+        this.addTag(tag)
+        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
+    }
+    
     addTag(tag) {
         if (this.state.tags.length === 0) {
         // this.state.tags = []
         this.setState.tags = this.state.tags.push(tag)
         console.log("no tags " + this.state.tags)
+
         } else {
             this.setState.tags = this.state.tags.push(tag)
             console.log("tags " + this.state.tags)
@@ -114,14 +155,14 @@ class AddDrill extends React.Component {
             <input type="text" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
 
             <div className="btn-group" role="group" aria-label="..." >
-                <button type="button" className="btn btn-lg active" onClick={() => this.addTag('Defense')} >Defense</button>
-                <button type="button" className="btn btn-lg active" onClick={() => this.addTag('Dribbling')}>Dribbling</button>
-                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Man')}>Man</button>
-                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Offense')}>Offense</button>
-                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Passing')}>Passing</button>
-                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Rebounding')}>Rebounding</button>
-                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Shooting')}>Shooting</button>
-                <button type="button" className="btn btn-lg" onClick={() => this.addTag('Zone')}>Zone</button>
+                <button type="button" className="btn btn-lg active" id="Defense" onClick={() => this.handleDefense('Defense')} >Defense</button>
+                <button type="button" className="btn btn-lg active" id="Dribbling" onClick={() => this.handleDribbling('Dribbling')}>Dribbling</button>
+                <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleMan('Man')}>Man</button>
+                <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleOffense('Offense')}>Offense</button>
+                <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handlePassing('Passing')}>Passing</button>
+                // <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleRebounding('Rebounding')}>Rebounding</button>
+                <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleShooting('Shooting')}>Shooting</button>
+                <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleZone('Zone')}>Zone</button>
             </div>
             </div>
             <br />
