@@ -29,13 +29,15 @@ class Card extends React.Component {
         if (this.props.title !== undefined) {
             var title = this.props.title
             var description = this.props.description
+            var duration = this.props.duration
             var drillObject = {
                 title: title,
-                description: description
+                description: description,
+                duration: duration
             }
-            browserHistory.push('/drill')
+
+            browserHistory.push('/drill/' + this.props.id)
             console.log(drillObject)
-            return drillObject
         }
     }
 
