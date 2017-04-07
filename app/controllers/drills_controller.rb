@@ -1,31 +1,21 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :update, :destroy]
+  before_action :require_user, only: [:index, :create, :update, :destroy ]
 
   def index
-    if current_user
-      @drills = current_user.drills
-      render json: @drills
-    else
-      error = {:error => "need to be logged in"}
-      @errors = {:errors => error}
-      render json: @errors, status: 400
-    end
+    @drills = current_user.drills
+    render json: @drills
   end
 
   def create
-    if current_user
-      @drill = Drill.new(drill_params)
-      if @drill.save
-        render json: @drill
-      else
-        error = @drill.errors.full_messages.collect do |error_message|
-          {:error => error_message}
-        end
-        @errors = {:errors => error}
-        render json: @errors, status: 400
-      end
+    @drill = Drill.new(drill_params)
+    if @drill.save
+      @drill.update!(after_save_params)
+      render json: @drill
     else
-      error = {:error => "need to be logged in"}
+      error = @drill.errors.full_messages.collect do |error_message|
+        {:error => error_message}
+      end
       @errors = {:errors => error}
       render json: @errors, status: 400
     end
@@ -38,18 +28,12 @@ class DrillsController < ApplicationController
 
   def update
     # find_drill
-    if current_user
-      if @drill.update!(drill_params)
-        render json: @drill
-      else
-        error = @drill.errors.full_messages.collect do |error_message|
-          {:error => error_message}
-        end
-        @errors = {:errors => error}
-        render json: @errors, status: 400
-      end
+    if @drill.update!(drill_params)
+      render json: @drill
     else
-      error = {:error => "need to be logged in"}
+      error = @drill.errors.full_messages.collect do |error_message|
+        {:error => error_message}
+      end
       @errors = {:errors => error}
       render json: @errors, status: 400
     end
@@ -67,26 +51,55 @@ class DrillsController < ApplicationController
   end
 
   def drill_params
-    params[:user_id] = User.find_by(token: params[:token]).id
+    params[:user_id] = current_user.id
 
-    pre_drill_params = params.permit(:title,
-                             :description,
-                             :duration,
-                             :tags,
-                             :user_id,
-                             :default_avatar,
-                             :drill_pic,
-                             :plans)
-    tags = Array.new
-    pre_drill_params[:tags].split(%r{,\s*}).each do |name|
-      tags << Tag.find_or_create_by(name: name)
+    params.permit(#:token,
+                 :title,
+                 :description,
+                 :duration,
+                 :user_id,
+                 :default_avatar,
+                 :drill_pic)
+  end
+
+
+  def after_save_params
+    pre_drill_params = params.permit(
+                              :tags,
+                              :plans,
+                              :libraries
+    )
+
+    # tag list
+    if params[:tags].blank?
+      pre_drill_params[:tags] = []
+    else
+      tags = []
+      pre_drill_params[:tags].split(%r{,\s*})&.each do |name|
+        tags << Tag.find_or_create_by(name: name)
+        pre_drill_params[:tags] = tags
+      end
     end
-    pre_drill_params[:tags] = tags
-    plans = Array.new
-    pre_drill_params[:plans].split(%r{,\s*}).each do |title|
-    plans << Plan.find_by(title: title)
+    # plan list
+    if params[:plans].blank?
+      pre_drill_params[:plans] = []
+    else
+      plans = []
+      pre_drill_params[:plans].split(%r{,\s*})&.each do |title|
+      plans << Plan.find_by(title: title)
+      pre_drill_params[:plans] = plans
+      end
     end
-    pre_drill_params[:plans] = plans
+    # library list
+    if params[:libraries].blank?
+      pre_drill_params[:libraries] = []
+    else
+      libraries = []
+      pre_drill_params[:libraries].split(%r{,\s*})&.each do |title|
+      libraries << Library.find_by(title: title)
+      pre_drill_params[:libraries] = libraries
+      end
+    end
     return pre_drill_params
   end
 

@@ -3,8 +3,8 @@ class Drill < ApplicationRecord
   has_many :plans, through: :drill_plans
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
-  has_many :libraries, through: :lib_drills
   has_many :lib_drills
+  has_many :libraries, through: :lib_drills
   belongs_to :user
 
   mount_uploader :drill_pic, DrillUploader

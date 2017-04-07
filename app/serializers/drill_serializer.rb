@@ -2,19 +2,11 @@ class DrillSerializer < ActiveModel::Serializer
   attributes :id,
              :title,
              :description,
-             :duration,
-             :order_by,
-             :tags,
-             :plans
+             :duration
 
-   has_many :taggings, as: :taggable
-   has_many :tags, through: :taggings
-   has_many :drill_plans
-   has_many :plans, through: :drill_plans
-
-   def order_by
-     object.drill_plan.order_by
-   end
+   has_many :tags
+   has_many :plans
+   has_many :libraries
 
   def drills
     titles = []

@@ -40,11 +40,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :email, :password)
+    params.permit(:name, :email, :password, :token)
   end
 
   def find_user
-    @user = User.find_by(params['id'])
+    @user = User.find_by(token: params['token'])
   end
 
 end

@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(token: params[:token]) if params[:token]
   end
 
   def require_user
     unless current_user
-      render json: {:error => "You need to be logged in"}
+      error = {:error => "You need to be logged in"}
       @errors = {:errors => error}
       render json: @errors, status: 400
     end
