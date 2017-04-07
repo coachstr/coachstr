@@ -17,13 +17,16 @@ class AddDrill extends React.Component {
             title: '',
             description: '',
             duration: '',
-            tags: []
+            tags: [],
+            libraries: [],
+            plans: []
         }
 
     }
 
     componentWillMount() {
-        console.log(this.props.setFields)
+        // fetch drill with this.props.params.drillId
+
     }
 
     // onClick(addDrill) {
@@ -57,12 +60,12 @@ class AddDrill extends React.Component {
             tags: this.state.tags
         }
 
-        console.log(newDrillObject)
-        return newDrillObject
-
         alert('Your drill has been saved')
 
         browserHistory.push('/drills')
+
+        console.log(newDrillObject)
+        return newDrillObject
     }
 
     render() {

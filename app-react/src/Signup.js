@@ -9,7 +9,7 @@ class Signup extends Component {
 
         this.signup = this.signup.bind(this)
 
-        this.state= {
+        this.state = {
             name: '',
             email: '',
             password: '',

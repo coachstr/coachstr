@@ -23,6 +23,9 @@ class Main extends Component {
     alert('Your drill has been added')
   }
 
+  componentWillMount() {
+  }
+
   render() {
     return (
       <div>
@@ -54,10 +57,10 @@ class Main extends Component {
 
         <div className="rightColumn col-sm-9">
           <h2 className="text-center newFont">Drills</h2>
-            <Card image="img/warriordrill.png" title="Piston (1-3-1)" description="a coach will start with a ball and a pusher is big on the ball. The keeper than can back off and play the passing lane back to the other coach. The weak side pusher splits the difference from the block player and other coach."/>
-            <Card image="https://unsplash.it/300" title="Warrior (1-3-1)" description="Coaches pass back and forth and the warrior must fight through continuous baseline screens. We teach fighting low through these screens forcing the offense away from scoring area and if we are late to the corner, it funnels the offense back into our umbrella trap. Drill continues for 20-25 seconds or when a certain number of deflections are met. Teaching point is that X1 should always be in line with the basketball."/>
-            <Card image="https://unsplash.it/200" title="Rebounding (1-3-1)" description="If a shot comes from the corner, we are vulnerable on the weak side boards, so we must run our keeper to the weak side boards to help the pusher. Statistically, 7/10 will bounce weak side so we must attack the weak side boards. The clogger must spin and get to the block and box out that area. If a shot is taken from the wing, we form a triangle with our X1 Warrior going to either pinch in the post or go to weak side. We try as much as possible to form a rebounding triangle."/>
-            <Card image="https://unsplash.it/200" title="Zone 1-3-1"/>
+            <Card id="1" image="img/warriordrill.png" title="Piston (1-3-1)" description="a coach will start with a ball and a pusher is big on the ball. The keeper than can back off and play the passing lane back to the other coach. The weak side pusher splits the difference from the block player and other coach." duration="10"/>
+            <Card id="2" image="https://unsplash.it/300" title="Warrior (1-3-1)" description="Coaches pass back and forth and the warrior must fight through continuous baseline screens. We teach fighting low through these screens forcing the offense away from scoring area and if we are late to the corner, it funnels the offense back into our umbrella trap. Drill continues for 20-25 seconds or when a certain number of deflections are met. Teaching point is that X1 should always be in line with the basketball." duration="5"/>
+            <Card id="3" image="https://unsplash.it/200" title="Rebounding (1-3-1)" description="If a shot comes from the corner, we are vulnerable on the weak side boards, so we must run our keeper to the weak side boards to help the pusher. Statistically, 7/10 will bounce weak side so we must attack the weak side boards. The clogger must spin and get to the block and box out that area. If a shot is taken from the wing, we form a triangle with our X1 Warrior going to either pinch in the post or go to weak side. We try as much as possible to form a rebounding triangle." duration="15"/>
+            <Card id="4" image="https://unsplash.it/200" title="Zone 1-3-1"/>
 
           </div>
 
