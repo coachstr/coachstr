@@ -70,8 +70,11 @@ class AddDrill extends React.Component {
             plans,
             libraries
         }
-
-        fetch('/api/drills', {
+        if (title === '' || description === '' || duration === '') {
+            alert('You must complete all fields')
+        }
+        else { 
+            fetch('/api/drills', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -92,7 +95,8 @@ class AddDrill extends React.Component {
         browserHistory.push('/drills')
 
         console.log(newDrillObject)
-    }
+    }}
+       
 
     render() {
 
