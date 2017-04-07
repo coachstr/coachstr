@@ -53,19 +53,45 @@ class AddDrill extends React.Component {
     }
 
     newDrill() {
+        var title = this.state.title
+        var description = this.state.description
+        var duration = this.state.duration
+        var tags = this.state.tags
+        var token = sessionStorage.getItem('token')
+        var plans = this.state.plans
+        var libraries = this.state.libraries
+        
         var newDrillObject = {
-            title: this.state.title,
-            description: this.state.description,
-            duration: this.state.duration,
-            tags: this.state.tags
+            title,
+            description,
+            duration,
+            tags,
+            token,
+            plans,
+            libraries
         }
+
+        fetch('/api/drills', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    description: description,
+                    duration: duration,
+                    token: token,
+                    tags: tags,
+                    plans: plans,
+                    libraries: libraries
+                })
+            })
 
         alert('Your drill has been saved')
 
         browserHistory.push('/drills')
 
         console.log(newDrillObject)
-        return newDrillObject
     }
 
     render() {
