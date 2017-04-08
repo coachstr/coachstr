@@ -24,7 +24,7 @@ class DrillsController < ApplicationController
   def show
     # binding.pry
     # find_drill
-    render json: @drill, include: @drill.tags
+    render json: @drill
   end
 
   def update
