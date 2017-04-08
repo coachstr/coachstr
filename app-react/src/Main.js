@@ -55,9 +55,10 @@ class Main extends Component {
     console.log('drills ' + this.state.drills)
 
      let drills = this.state.drills.map((drill, key) => {
-            return <Card key={key} id={drill.id} title={drill.title} description={drill.description}/>
+      console.log(drill)
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration}/>
         })
-
+        
     return (
       <div>
         <Header/>
