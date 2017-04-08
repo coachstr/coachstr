@@ -2,7 +2,10 @@ class DrillSerializer < ActiveModel::Serializer
   attributes :id,
              :title,
              :description,
-             :duration
+             :duration,
+             :tags,
+             :plans,
+             :libraries
 
    has_many :tags
    has_many :plans

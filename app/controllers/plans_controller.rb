@@ -68,21 +68,37 @@ class PlansController < ApplicationController
   def plan_params
     params[:user_id] = User.find_by(token: params[:token]).id
 
-    pre_plan_params = params.permit(:title,
-                             :total_duration,
-                             :tags,
-                             :drills,
-                             :user_id)
-    tags = Array.new
-    pre_plan_params[:tags].split(%r{,\s*}).each do |name|
-      tags << Tag.find_or_create_by(name: name)
+    params.permit(:title,
+                  :total_duration,
+                  :user_id)
+
+  end
+  def after_save_params
+    pre_drill_params = params.permit(
+                           :tags => [],
+                           :plans => []
+    )
+
+    # tag list
+    if params[:tags].blank?
+     pre_drill_params[:tags] = []
+    else
+     tags = []
+     pre_drill_params[:tags].split(%r{,\s*})&.each do |name|
+       tags << Tag.find_or_create_by(name: name)
+       pre_drill_params[:tags] = tags
+     end
     end
-    pre_plan_params[:tags] = tags
-    drills = Array.new
-    pre_plan_params[:drills].split(%r{,\s*}).each do |title|
-      drills << Drill.find_by(title: title)
+    # plan list
+    if params[:plans].blank?
+     pre_drill_params[:plans] = []
+    else
+     plans = []
+     pre_drill_params[:plans].split(%r{,\s*})&.each do |title|
+     plans << Plan.find_by(title: title)
+     pre_drill_params[:plans] = plans
+     end
     end
-    pre_plan_params[:drills] = drills
-    return pre_plan_params
+    return pre_drill_params
   end
 end

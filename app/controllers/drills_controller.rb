@@ -1,6 +1,6 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :update, :destroy]
-  before_action :require_user, only: [:index, :create, :update, :destroy ]
+  before_action :require_user, only: [:index, :create, :update, :destroy]
 
   def index
     @drills = current_user.drills
@@ -22,8 +22,9 @@ class DrillsController < ApplicationController
   end
 
   def show
+    # binding.pry
     # find_drill
-    render json: @drill #, include: @drill.tags
+    render json: @drill, include: @drill.tags
   end
 
   def update
@@ -71,7 +72,6 @@ class DrillsController < ApplicationController
     )
 
     # tag list
-    # binding.pry
     if params[:tags].blank?
       pre_drill_params[:tags] = []
     else
