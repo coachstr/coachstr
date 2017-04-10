@@ -38,41 +38,28 @@ class AddDrill extends React.Component {
     }
 
     componentWillMount() {
-        // console.log("drill id " + this.props.params.drillId)
         this.getInfo()
     }
 
     getInfo() {
         var token = sessionStorage.getItem('token');
         let id = this.props.params.drillId
-        console.log("drill id 2 " + id)
         fetch('/api/drills?token=' + token)
         .then(function(response) {
         return response.json();
         })
         .then(response => this.setState({ drills: response.drills}))
-            // .then(response => console.log("drill response " + response.drills[id].title))
-        .then(response => console.log("drill response " + this.state.drills[0].title))
         .then(this.findIndex)
-
     }
 
     findIndex() {
-        console.log('drill length ' + this.state.drills.length)
         for (var i = 0; i < this.state.drills.length; i++) {
-            // alert(i)
-            console.log("for loop id " + this.state.drills[i].id)
             if (this.state.drills[i].id == this.props.params.drillId) {
-                console.log("matching title " + this.state.drills[i].title)
                 this.setState({ title: this.state.drills[i].title})
                 this.setState({ description: this.state.drills[i].description})
                 this.setState({ duration: this.state.drills[i].duration})
                 this.setState({ title: this.state.drills[i].title})
-            } else {
-                console.log("no match state" + this.state.drills[i].id)
-                console.log('this is not ' + this.props.params.drillId)
             }
-
         }
     }
 
@@ -83,7 +70,6 @@ class AddDrill extends React.Component {
     
     addTag(tag) {
         if (this.state.tags.length === 0) {
-        // this.state.tags = []
         this.setState.tags = this.state.tags.push(tag)
         console.log("no tags " + this.state.tags)
 
@@ -116,7 +102,6 @@ class AddDrill extends React.Component {
             alert('You must complete all fields')
         }
         else if (this.props.params.drillId == 'undefined') { 
-            console.log("params = " + this.props.params.drillId)
             fetch('/api/drills', {
                 method: 'POST',
                 headers: {
@@ -194,8 +179,6 @@ class AddDrill extends React.Component {
             </div>
             </div>
             <br />
-
-            {/*<a className="btn-floating btn-large waves-effect waves-light red pull-right fab" onClick={() => console.log(drillsArray)}>view</a>*/}
 
             <a className="btn-floating btn-large waves-effect waves-light red pull-right fab" onClick={
                 this.newDrill}><i className="material-icons left">save</i></a>
