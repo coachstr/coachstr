@@ -19,7 +19,7 @@ class Card extends React.Component {
 
   }
 
-componentWillMount() {
+    componentWillMount() {
         this.getTags()
     }
 
@@ -61,11 +61,8 @@ componentWillMount() {
     }
 
     render() {
-
-    let drills = this.state.drills.map((drill, key) => {
-        if (drill.id === this.props.id && drill.tags[0]) {
-      return <Chip tag={drill.tags[0].name}/>
-        }
+    let tags = this.props.tags.map((tag, key) => {
+      return <Chip tag={tag.name}/>
     })
 
         return <div className="col-sm-6 col-m-4" >
@@ -75,7 +72,7 @@ componentWillMount() {
                     <p>{this.props.description}</p>
                 </div>
                 <div className="card-action">
-                    {drills}
+                    {tags}
                 </div>
 
                  <a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>
