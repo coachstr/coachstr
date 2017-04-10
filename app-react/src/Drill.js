@@ -58,7 +58,9 @@ class AddDrill extends React.Component {
                 this.setState({ title: this.state.drills[i].title})
                 this.setState({ description: this.state.drills[i].description})
                 this.setState({ duration: this.state.drills[i].duration})
-                this.setState({ title: this.state.drills[i].title})
+            } else {
+                console.log("no match state" + this.state.drills[i].id)
+                console.log('this is not ' + this.props.params.drillId)
             }
         }
     }
@@ -67,7 +69,7 @@ class AddDrill extends React.Component {
         this.addTag(tag)
         document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
     }
-    
+
     addTag(tag) {
         if (this.state.tags.length === 0) {
         this.setState.tags = this.state.tags.push(tag)
@@ -88,7 +90,7 @@ class AddDrill extends React.Component {
         var plans = this.state.plans
         var libraries = this.state.libraries
         var id = this.props.params.drillId
-        
+
         var newDrillObject = {
             title,
             description,
@@ -101,7 +103,8 @@ class AddDrill extends React.Component {
         if (title === '' || description === '' || duration === '') {
             alert('You must complete all fields')
         }
-        else if (this.props.params.drillId == 'undefined') { 
+        else if (this.props.params.drillId == 'undefined') {
+            console.log("params = " + this.props.params.drillId)
             fetch('/api/drills', {
                 method: 'POST',
                 headers: {
@@ -150,7 +153,7 @@ class AddDrill extends React.Component {
     }
 
 }
-       
+
 
     render() {
 

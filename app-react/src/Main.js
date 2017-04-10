@@ -38,14 +38,16 @@ class Main extends Component {
     }
 
   render() {
-     let drills = this.state.drills.map((drill, key) => { 
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration}/>
+    console.log('drills ' + this.state.drills)
+
+     let drills = this.state.drills.map((drill, key) => {
+      console.log(drill)
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} />
         })
-        
+
     return (
       <div>
         <Header title='Plan X'/>
-        
         <div className="container">
           <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.id)}><i className="material-icons">add</i></a>
         </div>

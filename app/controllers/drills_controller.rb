@@ -3,6 +3,7 @@ class DrillsController < ApplicationController
   before_action :require_user, only: [:index, :create, :update, :destroy]
 
   def index
+    # binding.pry
     @drills = current_user.drills
     render json: @drills
   end
@@ -76,7 +77,7 @@ class DrillsController < ApplicationController
       pre_drill_params[:tags] = []
     else
       tags = []
-      pre_drill_params[:tags].split(%r{,\s*})&.each do |name|
+      pre_drill_params[:tags]&.each do |name|
         tags << Tag.find_or_create_by(name: name)
         pre_drill_params[:tags] = tags
       end
@@ -86,7 +87,7 @@ class DrillsController < ApplicationController
       pre_drill_params[:plans] = []
     else
       plans = []
-      pre_drill_params[:plans].split(%r{,\s*})&.each do |title|
+      pre_drill_params[:plans]&.each do |title|
       plans << Plan.find_by(title: title)
       pre_drill_params[:plans] = plans
       end
@@ -96,7 +97,7 @@ class DrillsController < ApplicationController
       pre_drill_params[:libraries] = []
     else
       libraries = []
-      pre_drill_params[:libraries].split(%r{,\s*})&.each do |title|
+      pre_drill_params[:libraries]&.each do |title|
       libraries << Library.find_by(title: title)
       pre_drill_params[:libraries] = libraries
       end
