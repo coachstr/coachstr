@@ -13,6 +13,8 @@ class AddDrill extends React.Component {
         this.addTag = this.addTag.bind(this)
         this.newDrill = this.newDrill.bind(this)
         this.handleTag = this.handleTag.bind(this)
+        this.getInfo = this.getInfo.bind(this)
+        this.findIndex = this.findIndex.bind(this)
         // this.handleDefense = this.handleDefense.bind(this)
         // this.handleDribbling = this.handleDribbling.bind(this)
         // this.handleMan = this.handleMan.bind(this)
@@ -28,14 +30,41 @@ class AddDrill extends React.Component {
             duration: '',
             tags: [],
             libraries: [],
-            plans: []
+            plans: [],
+            drills: [],
+            id: ''
         }
 
     }
 
     componentWillMount() {
-        // fetch drill with this.props.params.drillId
+        // console.log("drill id " + this.props.params.drillId)
+        this.getInfo()
+    }
 
+    getInfo() {
+        var token = sessionStorage.getItem('token');
+        let id = this.props.params.drillId
+        console.log("drill id 2 " + id)
+        fetch('/api/drills?token=' + token)
+        .then(function(response) {
+        return response.json();
+        })
+        .then(response => this.setState({ drills: response.drills}))
+            // .then(response => console.log("drill response " + response.drills[id].title))
+        .then(response => console.log("drill response " + this.state.drills[0].title))
+        .then(response => this.setState({ title: this.state.drills[0].title}))
+
+    }
+
+    findIndex() {
+        console.log('drill length ' + this.state.drills.length)
+        // this.state.drills.forEach(
+        //     alert(this.state.drills.title)
+        // )
+        for (var i; i < this.state.drills.length; i++) {
+            alert(i)
+        }
     }
 
     // onClick(addDrill) {
@@ -54,39 +83,6 @@ class AddDrill extends React.Component {
         this.addTag(tag)
         document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
     }
-
-    // handleDefense(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled"); 
-    // }
-    // handleDribbling(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
-    // handleMan(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
-    // handleOffense(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
-    // handlePassing(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
-    // handleRebounding(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
-    // handleShooting(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
-    // handleZone(tag){
-    //     this.addTag(tag)
-    //     document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    // }
     
     addTag(tag) {
         if (this.state.tags.length === 0) {

@@ -13,8 +13,8 @@ class Card extends React.Component {
             tags: []
         }
 
-    // this.addToPlan = this.addToPlan.bind(this)
-    // this.viewDrill = this.viewDrill.bind(this)
+    this.addToPlan = this.addToPlan.bind(this)
+    this.viewDrill = this.viewDrill.bind(this)
     this.getTags = this.getTags.bind(this)
 
   }
@@ -51,7 +51,13 @@ componentWillMount() {
 
             browserHistory.push('/drill/' + this.props.id)
             console.log(drillObject)
+        } else {
+            browserHistory.push('/drill/' + this.props.id)
         }
+    }
+
+    addToPlan() {
+        alert('This drill has been added to your plan')
     }
 
     render() {
@@ -64,7 +70,7 @@ componentWillMount() {
 
         return <div className="col-sm-6 col-m-4" >
             <div className="card blue-grey darken-1 small">
-                <div className="card-content white-text" onClick={this.setFields}>
+                <div className="card-content white-text" onClick={this.viewDrill}>
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
                     <p>{this.props.description}</p>
                 </div>
