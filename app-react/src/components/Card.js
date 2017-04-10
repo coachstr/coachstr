@@ -63,7 +63,7 @@ componentWillMount() {
     render() {
 
     let drills = this.state.drills.map((drill, key) => {
-        if (drill.id === this.props.id) {
+        if (drill.id === this.props.id && drill.tags[0]) {
       return <Chip tag={drill.tags[0].name}/>
         }
     })

@@ -101,6 +101,7 @@ class AddDrill extends React.Component {
         var token = sessionStorage.getItem('token')
         var plans = this.state.plans
         var libraries = this.state.libraries
+        var id = this.props.params.drillId
         
         var newDrillObject = {
             title,
@@ -114,7 +115,8 @@ class AddDrill extends React.Component {
         if (title === '' || description === '' || duration === '') {
             alert('You must complete all fields')
         }
-        else { 
+        else if (this.props.params.drillId == 'undefined') { 
+            console.log("params = " + this.props.params.drillId)
             fetch('/api/drills', {
                 method: 'POST',
                 headers: {
@@ -136,7 +138,33 @@ class AddDrill extends React.Component {
         browserHistory.push('/drills')
 
         console.log(newDrillObject)
-    }}
+    } else {
+        console.log("drill params defined")
+        fetch('/api/drills/' + id, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    description: description,
+                    duration: duration,
+                    token: token,
+                    tags: tags,
+                    plans: plans,
+                    libraries: libraries,
+                    id: id
+                })
+            })
+
+        alert('Your drill has been updated')
+
+        browserHistory.push('/drills')
+
+        console.log(newDrillObject)
+    }
+
+}
        
 
     render() {
