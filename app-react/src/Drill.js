@@ -53,31 +53,28 @@ class AddDrill extends React.Component {
         .then(response => this.setState({ drills: response.drills}))
             // .then(response => console.log("drill response " + response.drills[id].title))
         .then(response => console.log("drill response " + this.state.drills[0].title))
-        .then(response => this.setState({ title: this.state.drills[0].title}))
+        .then(this.findIndex)
 
     }
 
     findIndex() {
         console.log('drill length ' + this.state.drills.length)
-        // this.state.drills.forEach(
-        //     alert(this.state.drills.title)
-        // )
-        for (var i; i < this.state.drills.length; i++) {
-            alert(i)
+        for (var i = 0; i < this.state.drills.length; i++) {
+            // alert(i)
+            console.log("for loop id " + this.state.drills[i].id)
+            if (this.state.drills[i].id == this.props.params.drillId) {
+                console.log("matching title " + this.state.drills[i].title)
+                this.setState({ title: this.state.drills[i].title})
+                this.setState({ description: this.state.drills[i].description})
+                this.setState({ duration: this.state.drills[i].duration})
+                this.setState({ title: this.state.drills[i].title})
+            } else {
+                console.log("no match state" + this.state.drills[i].id)
+                console.log('this is not ' + this.props.params.drillId)
+            }
+
         }
     }
-
-    // onClick(addDrill) {
-    //     // Call parent addTodo method
-    //     addDrill(this.state.title, this.state.body, this.state.link, this.state.tags)
-
-    //     // Sets state of fields, and triggers render() again
-    //     this.setState({
-    //         title: '',
-    //         body: '',
-    //         link: '',
-    //     })
-    // }
 
     handleTag(tag) {
         this.addTag(tag)
