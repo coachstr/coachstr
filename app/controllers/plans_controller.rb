@@ -1,18 +1,13 @@
 class PlansController < ApplicationController
   before_action :find_plan, only: [:show, :update, :destroy]
+  before_action :require_user, only: [:index, :create, :update]
 
   def index
-    if current_user
       @plans = current_user.plans
-    else
-      error = {:error => "need to be logged in"}
-      @errors = {:errors => error}
-      render json: @errors, status: 400
-    end
+      render json: @plans
   end
 
   def create
-    if current_user
       @plan = Plan.new(plan_params)
       if @plan.save
         render json: @plan
@@ -23,11 +18,6 @@ class PlansController < ApplicationController
         @errors = {:errors => error}
         render json: @errors, status: 400
       end
-    else
-      render json: {:error => "need to be logged in"}
-      @errors = {:errors => error}
-      render json: @errors, status: 400
-    end
   end
 
   def show
@@ -37,7 +27,6 @@ class PlansController < ApplicationController
 
   def update
     # find_plan
-    if current_user
       if @plan.update!(drill_params)
         render json: @plan
       else
@@ -47,11 +36,6 @@ class PlansController < ApplicationController
         @errors = {:errors => error}
         render json: @errors, status: 400
       end
-    else
-      error = {:error => "need to be logged in"}
-      @errors = {:errors => error}
-      render json: @errors, status: 400
-    end
   end
 
   def destroy
