@@ -66,6 +66,7 @@ class DrillsController < ApplicationController
 
 
   def after_save_params
+    puts params
     pre_drill_params = params.permit(
                               :tags => [],
                               :plans => [],
