@@ -42,7 +42,7 @@ class Signin extends Component {
 
                 if (response.user.token) {
                     sessionStorage.setItem('token', response.user.token)
-                    browserHistory.push('/drills')
+                    browserHistory.push('/plans')
                 } else {
                     alert('There was an error signing in')
                     console.log('Signin : ' + response.user)
