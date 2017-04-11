@@ -47,8 +47,7 @@ class Main extends Component {
 
     return (
       <div>
-        <Header/>
-
+        <Header title='Plan X'/>
         <div className="container">
           <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.id)}><i className="material-icons">add</i></a>
         </div>
