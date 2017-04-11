@@ -34,7 +34,7 @@ class Main extends Component {
         .then(function(response) {
         return response.json();
         })
-         .then(response => this.setState({ drills: response.drills}))
+        .then(response => this.setState({ drills: response.drills}))
     }
 
   render() {
