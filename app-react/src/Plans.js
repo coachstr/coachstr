@@ -31,17 +31,17 @@ class Plans extends Component {
 
     fetch('/api/plans?token=' + token)
       .then(function (response) {
-        console.log(response)
         return response.json();
       })
-      .then(console.log('log'))
       .then(response => this.setState({ plans: response.plans }))
   }
 
   render() {
+    console.log('plans ' + this.state.plans)
+
       let plans = this.state.plans.map((plan, key) => {
       console.log(plan) 
-      return <Card key={key} id={plan.id} title={plan.title}/>
+      return <Card key={key} id={plan.id} title={plan.title} tags={plan.tags}/>
         })
 
     return (
@@ -54,7 +54,8 @@ class Plans extends Component {
 
         <div className="container">
 
-          <h2 className="text-center">Drills</h2>
+          <h2 className="text-center">Plans</h2>
+          {plans}
         </div>
 
       </div>

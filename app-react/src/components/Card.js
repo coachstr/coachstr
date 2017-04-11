@@ -72,7 +72,7 @@ class Card extends React.Component {
                     <p>{this.props.description}</p>
                 </div>
                 <div className="card-action">
-                    {tags}
+                    {/*{tags}*/}
                 </div>
 
                  <a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>
