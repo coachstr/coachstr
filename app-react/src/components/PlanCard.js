@@ -14,7 +14,7 @@ class PlanCard extends React.Component {
         }
 
     // this.addToPlan = this.addToPlan.bind(this)
-    // this.viewPlan = this.viewPlan.bind(this)
+    this.viewPlan = this.viewPlan.bind(this)
     this.getTags = this.getTags.bind(this)
 
   }
@@ -36,7 +36,7 @@ class PlanCard extends React.Component {
 
   viewPlan() {
       console.log(this.props.id)
-      browserHistory.push('/plan/' + this.props.id)
+      browserHistory.push('/drills/' + this.props.id)
   }
 
     setFields() {
