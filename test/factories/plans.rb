@@ -2,7 +2,7 @@ FactoryGirl.define do |plan|
   factory :plan do
     title           {Faker::Job.title}
     total_duration  {1500}
-    plan.user       {Factory(:user)}
+    user
 
     transient do
       drill_count 5

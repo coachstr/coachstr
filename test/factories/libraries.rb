@@ -2,7 +2,7 @@ FactoryGirl.define do |library|
   factory :library do
     title         {Faker::Job.title}
     private       {true}
-    library.user  {Factory(:user)}
+    user
 
     transient do
       drills_count   5

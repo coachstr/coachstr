@@ -3,7 +3,7 @@ FactoryGirl.define do |drill|
     title       {Faker::Job.title}
     description {Faker::Hipster.paragraphs(1)}
     duration    {300}
-    drill.user  {Factory(:user)}
+    user  
 
     transient do
       tag_count   5
