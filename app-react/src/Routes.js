@@ -18,7 +18,7 @@ import Plan from './Plan'
 class Routes extends React.Component {
     render() {
         return <Router history={browserHistory}>
-            <Route path="/drills" component={Main} />
+            <Route path="/drills/:planId" component={Main} />
             <Route path="/" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/plans" component={Plans} />

@@ -96,6 +96,7 @@ class Plan extends React.Component {
                     title: title,
                     token: token,
                     tags: tags,
+                    id: id
                 })
             })
 
