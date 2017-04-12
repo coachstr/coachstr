@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 
 import Header from './components/Header'
-import Card from './components/Card'
+import PlanCard from './components/PlanCard'
 
 
 class Plans extends Component {
@@ -19,7 +19,7 @@ class Plans extends Component {
   }
 
   addPlan() {
-    alert('Your plan has been added')
+    browserHistory.push('/plan/' + undefined)
   }
 
   componentWillMount() {
@@ -41,7 +41,7 @@ class Plans extends Component {
 
       let plans = this.state.plans.map((plan, key) => {
       console.log(plan) 
-      return <Card key={key} id={plan.id} title={plan.title} tags={plan.tags}/>
+      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags}/>
         })
 
     return (

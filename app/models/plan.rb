@@ -6,5 +6,5 @@ class Plan < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
-  validates :total_duration, presence: true
+  # validates :total_duration, presence: true
 end

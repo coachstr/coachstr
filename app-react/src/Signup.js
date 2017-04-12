@@ -54,7 +54,7 @@ class Signup extends Component {
 
         if (response.user.token) { 
             sessionStorage.setItem('token', response.user.token)
-            browserHistory.push('/drills')
+            browserHistory.push('/plans')
         }
         else {
             alert('Sign Up Error: ' + response)
