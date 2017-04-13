@@ -4,6 +4,13 @@ class PlansController < ApplicationController
 
   def index
       @plans = current_user.plans
+      @plans.each do |plan|
+        durations = []
+        plan.drills.each do |drill|
+          durations << drill.duration
+        end
+        plan.total_duration = (durations.sum / 60)
+      end
       render json: @plans
   end
 
@@ -23,6 +30,11 @@ class PlansController < ApplicationController
 
   def show
     # find_plan
+    durations = []
+    @plan.drills.each do |drill|
+      durations << drill.duration
+    end
+    @plan.total_duration = (durations.sum / 60)
     render json: @plan
   end
 

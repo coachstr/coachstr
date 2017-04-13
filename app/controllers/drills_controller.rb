@@ -54,7 +54,7 @@ class DrillsController < ApplicationController
 
   def drill_params
     params[:user_id] = current_user.id
-
+    params[:duration] = params[:duration] * 60;
     params.permit(#:token,
                  :title,
                  :description,
