@@ -14,11 +14,13 @@ class Main extends Component {
     this.state = {
       drills: [],
       planDrills: [],
+      incomingPlanDrills: [],
       id: ''
     }
 
     // this.addDrill = this.addDrill.bind(t his)
     this.getDrills = this.getDrills.bind(this)
+    this.getPlanDrills = this.getPlanDrills.bind(this)
     this.savePlan = this.savePlan.bind(this)
 
   }
@@ -36,18 +38,29 @@ class Main extends Component {
 
   componentWillMount() {
     this.getDrills()
+    this.getPlanDrills()
   }
 
   getDrills() {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
-    console.log('plan id ' + this.props.params.planId)
 
     fetch('/api/drills?token=' + token)
       .then(function (response) {
         return response.json();
       })
     .then(response =>  this.setState({ drills: response.drills }))
+  }
+
+  getPlanDrills() {
+    var token = sessionStorage.getItem('token');
+    let id = this.props.params.planId
+
+     fetch('/api/plans/'+ id +'?token=' + token)
+        .then(function(response) {
+        return response.json();
+      })
+      .then(response =>  this.setState({ incomingPlanDrills: response.plan.drills }))
   }
 
   savePlan() {
@@ -69,6 +82,11 @@ class Main extends Component {
 
   render() {
 
+    let incomingPlanDrills = this.state.incomingPlanDrills.map((incomingDrill, key) => {
+      console.log(incomingDrill)
+      return <PlanItem key={key} title={incomingDrill.title}/>
+    })
+
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
       return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills}/>
@@ -85,10 +103,7 @@ class Main extends Component {
           <div className="leftColumn col-sm-3">
             <h2 className="text-center newFont">Plan</h2>
             <ul className="collection planItems">
-              <PlanItem title="Piston (1-3-1)" />
-              <PlanItem title="Piston (1-3-1)" />
-              <PlanItem title="Piston (1-3-1)" />
-              <PlanItem title="Piston (1-3-1)" />
+              {incomingPlanDrills}
               <li className="collection-item text-center savePlan" onClick={this.savePlan}>Save Plan</li>
             </ul>
           </div>
