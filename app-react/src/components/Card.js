@@ -67,7 +67,6 @@ class Card extends React.Component {
     } else {
       drillArray = drillArray.push(drill)
     }
-    console.log('drill array from card' + drillArray)
     alert('you have added drill #' + drill)
   }
 

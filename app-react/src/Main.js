@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import styles from '../public/css/index.css';
+import styles from '../public/css/index.css'
 
 import Header from './components/Header'
 import Card from './components/Card'
@@ -51,6 +51,19 @@ class Main extends Component {
   }
 
   savePlan() {
+    let id = this.props.params.planId
+    var token = sessionStorage.getItem('token')
+    fetch('/api/plans/' + id, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    drills: this.state.planDrills,
+                    token: token
+                })
+            })
+    console.log(this.state.planDrills)
     alert('Your plan has been saved')
   }
 
