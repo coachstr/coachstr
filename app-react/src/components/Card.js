@@ -62,14 +62,12 @@ class Card extends React.Component {
     }
 
     addDrill(drill, drillArray) {
-        console.log('first drills length ' + drillArray)
     if (drillArray.length === 0) {
       drillArray = drillArray.push(drill)
     } else {
       drillArray = drillArray.push(drill)
     }
     console.log('drill array from card' + drillArray)
-
     alert('you have added drill #' + drill)
   }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
+import styles from '../public/css/index.css';
 
 import Header from './components/Header'
 import Card from './components/Card'
@@ -18,6 +19,7 @@ class Main extends Component {
 
     // this.addDrill = this.addDrill.bind(t his)
     this.getDrills = this.getDrills.bind(this)
+    this.savePlan = this.savePlan.bind(this)
 
   }
 
@@ -48,9 +50,11 @@ class Main extends Component {
     .then(response =>  this.setState({ drills: response.drills }))
   }
 
+  savePlan() {
+    alert('Your plan has been saved')
+  }
+
   render() {
-    console.log('drills ' + this.state.drills)
-    console.log('plan drills ' + this.state.planDrills)
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
@@ -59,7 +63,7 @@ class Main extends Component {
 
     return (
       <div>
-        <Header title='Plan X' />
+        <Header title={this.props.params.planId} />
         <div className="container">
           <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.id)}><i className="material-icons">add</i></a>
         </div>
@@ -72,6 +76,7 @@ class Main extends Component {
               <PlanItem title="Piston (1-3-1)" />
               <PlanItem title="Piston (1-3-1)" />
               <PlanItem title="Piston (1-3-1)" />
+              <li className="collection-item text-center savePlan" onClick={this.savePlan}>Save Plan</li>
             </ul>
           </div>
 
