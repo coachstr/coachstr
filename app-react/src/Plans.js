@@ -41,7 +41,7 @@ class Plans extends Component {
 
       let plans = this.state.plans.map((plan, key) => {
       console.log(plan) 
-      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags}/>
+      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags} duration={plan.total_duration}/>
         })
 
     return (
