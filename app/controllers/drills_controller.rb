@@ -23,7 +23,6 @@ class DrillsController < ApplicationController
   end
 
   def show
-    # binding.pry
     # find_drill
     render json: @drill
   end
@@ -31,6 +30,7 @@ class DrillsController < ApplicationController
   def update
     # find_drill
     if @drill.update!(drill_params)
+      @drill.update!(after_save_params)
       render json: @drill
     else
       error = @drill.errors.full_messages.collect do |error_message|

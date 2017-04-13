@@ -10,6 +10,7 @@ class PlansController < ApplicationController
   def create
       @plan = Plan.new(plan_params)
       if @plan.save
+        @plan.update!(after_save_params)
         render json: @plan
       else
         error = @plan.errors.full_messages.collect do |error_message|
@@ -22,12 +23,13 @@ class PlansController < ApplicationController
 
   def show
     # find_plan
-    render json: @plan, include: [@plan.tags, @plan.drills]
+    render json: @plan
   end
 
   def update
     # find_plan
       if @plan.update!(plan_params)
+        @plan.update!(after_save_params)
         render json: @plan
       else
         error = @plan.errors.full_messages.collect do |error_message|
@@ -52,16 +54,12 @@ class PlansController < ApplicationController
   def plan_params
     params[:user_id] = User.find_by(token: params[:token]).id
 
-    params.permit(:title,
-                  :total_duration,
-                  :user_id)
+    params.permit(:title, :total_duration, :user_id )
 
   end
+
   def after_save_params
-    pre_drill_params = params.permit(
-                           :tags => [],
-                           :plans => []
-    )
+    pre_drill_params = params.permit( :tags => [], :plans => [] )
 
     # tag list
     if params[:tags].blank?
