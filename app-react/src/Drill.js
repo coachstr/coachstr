@@ -1,8 +1,5 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
-// import { connect } from 'react-redux'
-// import store from 'store'
-
 import Header from "./components/Header"
 
 class Drill extends React.Component {
