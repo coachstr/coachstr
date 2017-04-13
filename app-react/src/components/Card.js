@@ -6,38 +6,38 @@ import Chip from './Chip'
 class Card extends React.Component {
 
     constructor(props) {
-    super(props)
+        super(props)
 
-        this.state= {
+        this.state = {
             drills: [],
             tags: []
         }
 
-    this.addToPlan = this.addToPlan.bind(this)
-    this.viewDrill = this.viewDrill.bind(this)
-    this.addDrill = this.addDrill.bind(this)
-    this.getTags = this.getTags.bind(this)
+        this.addToPlan = this.addToPlan.bind(this)
+        this.viewDrill = this.viewDrill.bind(this)
+        this.addDrill = this.addDrill.bind(this)
+        this.getTags = this.getTags.bind(this)
 
-  }
+    }
 
     componentWillMount() {
         this.getTags()
     }
 
     getTags() {
-    var token = sessionStorage.getItem('token');
+        var token = sessionStorage.getItem('token');
 
-     fetch('/api/drills?token=' + token)
-        .then(function(response) {
-        return response.json();
-        })
+        fetch('/api/drills?token=' + token)
+            .then(function (response) {
+                return response.json();
+            })
         //  .then(response => this.setState({ drills: response.drills}))
     }
 
 
-  viewDrill() {
-      browserHistory.push('/drill/' + this.props.id)
-  }
+    viewDrill() {
+        browserHistory.push('/drill/' + this.props.id)
+    }
 
     setFields() {
         if (this.props.title !== undefined) {
@@ -61,19 +61,22 @@ class Card extends React.Component {
         alert('This drill has been added to your plan')
     }
 
-    addDrill(drill, drillArray) {
-    if (drillArray.length === 0) {
-      drillArray = drillArray.push(drill)
-    } else {
-      drillArray = drillArray.push(drill)
+    addDrill(drill, drillArray, getPlanDrills) {
+        if (drillArray.length === 0) {
+            drillArray = drillArray.push(drill)
+        } else {
+            drillArray = drillArray.push(drill)
+        }
+
+        getPlanDrills()
+
+        alert('you have added drill #' + drill)
     }
-    alert('you have added drill #' + drill)
-  }
 
     render() {
-    let tags = this.props.tags.map((tag, key) => {
-      return <Chip tag={tag.name} key={key}/>
-    })
+        let tags = this.props.tags.map((tag, key) => {
+            return <Chip tag={tag.name} key={key} />
+        })
 
         return <div className="col-sm-6 col-m-4" >
             <div className="card blue-grey darken-1 small">
@@ -85,7 +88,7 @@ class Card extends React.Component {
                     {tags}
                 </div>
 
-                 <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drillArray)}><i className="material-icons">add</i></a>
+                <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drillArray, this.props.addItemFunction)}><i className="material-icons">add</i></a>
             </div>
 
         </div>

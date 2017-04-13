@@ -63,7 +63,7 @@ class Signin extends Component {
                 {/*<h2 className="header signinCard">Sign In</h2>*/}
                 <div className="card horizontal">
                     <div className="card-image">
-                        <img src="https://unsplash.it/200" id="signinImage" />
+                        <img src="https://unsplash.it/200" alt="Logo" id="signinImage" />
                     </div>
                     <div className="card-stacked">
                         <div className="card-content">
