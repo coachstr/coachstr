@@ -27,7 +27,7 @@ class PlansController < ApplicationController
 
   def update
     # find_plan
-      if @plan.update!(drill_params)
+      if @plan.update!(plan_params)
         render json: @plan
       else
         error = @plan.errors.full_messages.collect do |error_message|
