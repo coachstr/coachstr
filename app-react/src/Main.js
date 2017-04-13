@@ -78,7 +78,7 @@ class Main extends Component {
                 })
             })
     console.log(this.state.planDrills)
-    alert('Your plan has been saved')
+    alert('Your plan has been saved') 
   }
 
   render() {
@@ -95,7 +95,7 @@ class Main extends Component {
 
     return (
       <div>
-        <Header title={this.props.params.planId} />
+        <Header title={'Plan ' + this.props.params.planId} />
         <div className="container">
           <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.id)}><i className="material-icons">add</i></a>
         </div>

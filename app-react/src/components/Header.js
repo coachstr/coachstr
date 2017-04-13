@@ -12,7 +12,7 @@ class Header extends Component {
     render() {
         return (  <nav>
     <div className="nav-wrapper center orange darken-1">
-      <a href="#" className="brand-logo center black-text">Plan {this.props.title}</a>
+      <a href="#" className="brand-logo center black-text" onClick={() => browserHistory.push('/plans')}>{this.props.title}</a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><a className="black-text" onClick={this.signout}>{sessionStorage.getItem('token') ? "Sign out" : "Sign in"}</a></li>
       </ul>
