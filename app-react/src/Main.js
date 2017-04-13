@@ -12,10 +12,11 @@ class Main extends Component {
 
     this.state = {
       drills: [],
+      planDrills: [],
       id: ''
     }
 
-    this.addDrill = this.addDrill.bind(this)
+    // this.addDrill = this.addDrill.bind(t his)
     this.getDrills = this.getDrills.bind(this)
 
   }
@@ -23,11 +24,12 @@ class Main extends Component {
   addDrill(drill) {
     if (this.state.drills.length === 0) {
       this.setState.drills = this.state.drills.push(drill)
-      console.log("no drills " + this.state.drills)
+      console.log("no drills from adddrill" + this.state.drills)
     } else {
       this.setState.drills = this.state.drills.push(drill)
-      console.log("drills " + this.state.drills)
+      console.log("drills from adddrill" + this.state.drills)
     }
+    console.log('function from main to card' + this.state.drills)
   }
 
   componentWillMount() {
@@ -43,15 +45,16 @@ class Main extends Component {
       .then(function (response) {
         return response.json();
       })
-      .then(response => this.setState({ drills: response.drills }))
+    .then(response =>  this.setState({ drills: response.drills }))
   }
 
   render() {
     console.log('drills ' + this.state.drills)
+    console.log('plan drills ' + this.state.planDrills)
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} />
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills}/>
     })
 
     return (

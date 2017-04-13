@@ -15,6 +15,7 @@ class Card extends React.Component {
 
     this.addToPlan = this.addToPlan.bind(this)
     this.viewDrill = this.viewDrill.bind(this)
+    this.addDrill = this.addDrill.bind(this)
     this.getTags = this.getTags.bind(this)
 
   }
@@ -30,7 +31,7 @@ class Card extends React.Component {
         .then(function(response) {
         return response.json();
         })
-         .then(response => this.setState({ drills: response.drills}))
+        //  .then(response => this.setState({ drills: response.drills}))
     }
 
 
@@ -60,9 +61,21 @@ class Card extends React.Component {
         alert('This drill has been added to your plan')
     }
 
+    addDrill(drill, drillArray) {
+        console.log('first drills length ' + drillArray)
+    if (drillArray.length === 0) {
+      drillArray = drillArray.push(drill)
+    } else {
+      drillArray = drillArray.push(drill)
+    }
+    console.log('drill array from card' + drillArray)
+
+    alert('you have added drill #' + drill)
+  }
+
     render() {
     let tags = this.props.tags.map((tag, key) => {
-      return <Chip tag={tag.name}/>
+      return <Chip tag={tag.name} key={key}/>
     })
 
         return <div className="col-sm-6 col-m-4" >
@@ -72,10 +85,10 @@ class Card extends React.Component {
                     <p>{this.props.description}</p>
                 </div>
                 <div className="card-action">
-                    {/*{tags}*/}
+                    {tags}
                 </div>
 
-                 <a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>
+                 <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drillArray)}><i className="material-icons">add</i></a>
             </div>
 
         </div>
