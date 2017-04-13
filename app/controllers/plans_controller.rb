@@ -65,7 +65,7 @@ class PlansController < ApplicationController
 
   def plan_params
     params[:user_id] = User.find_by(token: params[:token]).id
-
+    params[:total_duration] = (params[:total_duration].to_i * 60);
     params.permit(:title, :total_duration, :user_id )
 
   end
