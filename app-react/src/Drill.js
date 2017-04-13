@@ -147,16 +147,16 @@ class Drill extends React.Component {
 
 
         return <div>
-            <Header title={this.state.title}/>
+            <Header title={'Plan ' + this.state.id}/>
             <div className="container">
                 <br/>
-            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills')}><i className="material-icons left">fast_rewind</i>Back</a>
+            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills/' + this.props.params.planId)}><i className="material-icons left">fast_rewind</i>Back</a>
             <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
             <div className="form-group">
                 <label htmlFor="instructions">Instructions</label>
                 <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
             </div>
-            <input type="text" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
+            <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
 
             <div className="btn-group" role="group" aria-label="..." >
                 <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
