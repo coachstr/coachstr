@@ -147,7 +147,7 @@ class Drill extends React.Component {
 
 
         return <div>
-            <Header/>
+            <Header title={this.state.title}/>
             <div className="container">
                 <br/>
             <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills')}><i className="material-icons left">fast_rewind</i>Back</a>
