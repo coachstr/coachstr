@@ -67,3 +67,8 @@ img {
 .deletePlanItem {
     cursor: pointer;
 }
+
+.savePlan {
+    background-color: lightgray;
+    cursor: pointer;
+}
