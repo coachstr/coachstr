@@ -24,6 +24,7 @@ class DrillsController < ApplicationController
 
   def show
     # find_drill
+    @drill.duration = (@drill.duration / 60)
     render json: @drill
   end
 
@@ -54,7 +55,7 @@ class DrillsController < ApplicationController
 
   def drill_params
     params[:user_id] = current_user.id
-    params[:duration] = params[:duration] * 60;
+    params[:duration] = (params[:duration].to_i * 60);
     params.permit(#:token,
                  :title,
                  :description,
@@ -66,7 +67,6 @@ class DrillsController < ApplicationController
 
 
   def after_save_params
-    puts params
     pre_drill_params = params.permit(
                               :tags => [],
                               :plans => [],
