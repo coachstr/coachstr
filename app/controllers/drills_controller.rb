@@ -5,6 +5,9 @@ class DrillsController < ApplicationController
   def index
     # binding.pry
     @drills = current_user.drills
+    @drills.each do |drill|
+      drill.duration = (drill.duration / 60)
+    end
     render json: @drills
   end
 
