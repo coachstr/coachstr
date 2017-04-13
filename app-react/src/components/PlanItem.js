@@ -29,7 +29,7 @@ class PlanItem extends React.Component {
     //     this.props.getItems(this.props.params.itemId)
     // }
     render() {
-        return <li className="collection-item"><span onClick={this.viewDrill}>{this.props.title}</span><span className="pull-right">
+        return <li className="collection-item"><span>{this.props.title}</span><span className="pull-right">
             <i className="material-icons deletePlanItem" onClick={this.deleteDrill}>delete</i>
             </span></li>
     }

@@ -55,6 +55,7 @@ class Main extends Component {
   getPlanDrills() {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
+    console.log('getplandrills')
 
      fetch('/api/plans/'+ id +'?token=' + token)
         .then(function(response) {
@@ -89,7 +90,7 @@ class Main extends Component {
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills}/>
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} addItemFunction={this.getPlanDrills}/>
     })
 
     return (
