@@ -66,7 +66,7 @@ class PlansController < ApplicationController
       pre_plan_params[:tags] = []
     else
       tags = []
-      pre_plan_params[:tags].split(%r{,\s*})&.each do |name|
+      pre_plan_params[:tags]&.each do |name|
         tags << Tag.find_or_create_by(name: name)
         pre_plan_params[:tags] = tags
       end
@@ -76,8 +76,8 @@ class PlansController < ApplicationController
       pre_plan_params[:drills] = []
     else
       drills = []
-      pre_plan_params[:drills]&.each do |title|
-      drills << Drill.find_by(title: title)
+      pre_plan_params[:drills]&.each do |id|
+      drills << Drill.find_by(id: id)
       pre_plan_params[:drills] = drills
       end
     end
