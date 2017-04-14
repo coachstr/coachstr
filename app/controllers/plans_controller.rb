@@ -18,6 +18,7 @@ class PlansController < ApplicationController
       @plan = Plan.new(plan_params)
       if @plan.save
         @plan.update!(after_save_params)
+
         render json: @plan
       else
         error = @plan.errors.full_messages.collect do |error_message|
@@ -42,6 +43,7 @@ class PlansController < ApplicationController
     # find_plan
       if @plan.update!(plan_params)
         @plan.update!(after_save_params)
+
         render json: @plan
       else
         error = @plan.errors.full_messages.collect do |error_message|
@@ -71,7 +73,7 @@ class PlansController < ApplicationController
   end
 
   def after_save_params
-    pre_plan_params = params.permit( :tags => [], :drills => [] )
+    pre_plan_params = params.permit( :tags => [], :drills => [], :drill_plans => [] )
 
     # tag list
     if params[:tags].blank?
@@ -87,7 +89,8 @@ class PlansController < ApplicationController
     if params[:drills].blank?
       pre_plan_params[:drills] = []
     else
-      drills = []
+      drill_plans = []
+      # pre_plan_params[:order_by] = []
       pre_plan_params[:drills]&.each_with_index do |drill_id, id|
         if id < 10
           id = "00#{id}".to_s
@@ -96,10 +99,9 @@ class PlansController < ApplicationController
         else
           id = id.to_s
         end
-
-        # binding.pry
-        drills << [drill_id: Drill.find_by(id: drill_id), order_by: id]
-        pre_plan_params[:drills] = drills
+        drill_plans << DrillPlan.new(drill_id: drill_id, order_by: id)
+        pre_plan_params[:drills] = []
+        pre_plan_params[:drill_plans] = drill_plans
       end
     end
     return pre_plan_params

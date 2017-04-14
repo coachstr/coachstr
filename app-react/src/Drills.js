@@ -95,7 +95,7 @@ class Drills extends Component {
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} planId={this.props.params.planId}
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} planId={this.props.params.planId} addItemFunction={this.getPlanDrills}
         />
     })
 
