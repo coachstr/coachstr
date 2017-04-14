@@ -32,12 +32,18 @@ class Plan extends React.Component {
     getInfo() {
         var token = sessionStorage.getItem('token');
         let id = this.props.params.drillId
-        fetch('/api/drills?token=' + token)
-        .then(function(response) {
-        return response.json();
-        })
-        .then(response => this.setState({ plans: response.plans}))
-        .then(this.findIndex)
+
+        if (token === null) {
+            alert('You must be signed in to create plans')
+            browserHistory.push('/')
+        } else {
+            fetch('/api/drills?token=' + token)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(response => this.setState({ plans: response.plans }))
+                .then(this.findIndex)
+        }
     }
 
     // findIndex() {
@@ -60,8 +66,8 @@ class Plan extends React.Component {
 
     addTag(tag) {
         if (this.state.tags.length === 0) {
-        this.setState.tags = this.state.tags.push(tag)
-        console.log("no tags " + this.state.tags)
+            this.setState.tags = this.state.tags.push(tag)
+            console.log("no tags " + this.state.tags)
 
         } else {
             this.setState.tags = this.state.tags.push(tag)
@@ -100,14 +106,14 @@ class Plan extends React.Component {
                 })
             })
 
-        alert('Your plan has been saved')
+            alert('Your plan has been saved')
 
-        browserHistory.push('/plans')
+            browserHistory.push('/plans')
 
-        console.log(newPlanObject)
-    } else {
-        console.log("plans params defined")
-        fetch('/api/plans/' + id, {
+            console.log(newPlanObject)
+        } else {
+            console.log("plans params defined")
+            fetch('/api/plans/' + id, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -120,36 +126,36 @@ class Plan extends React.Component {
                 })
             })
 
-        alert('Your plan has been updated')
+            alert('Your plan has been updated')
 
-        // browserHistory.push('/plans')
+            // browserHistory.push('/plans')
 
-        console.log(newPlanObject)
+            console.log(newPlanObject)
+        }
+
     }
-
-}
 
 
     render() {
 
 
         return <div>
-            <Header/>
+            <Header />
             <div className="container">
-                <br/>
-            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/plans')}><i className="material-icons left">fast_rewind</i>Back</a>
-            <input type="text" className="form-control" placeholder="Enter plan title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
+                <br />
+                <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/plans')}><i className="material-icons left">fast_rewind</i>Back</a>
+                <input type="text" className="form-control" placeholder="Enter plan title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
 
-            <div className="btn-group" role="group" aria-label="..." >
-                <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
-                <button type="button" className="btn btn-lg" id="Dribbling" onClick={() => this.handleTag('Dribbling')}>Dribbling</button>
-                <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleTag('Man')}>Man</button>
-                <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleTag('Offense')}>Offense</button>
-                <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handleTag('Passing')}>Passing</button>
-                <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleTag('Rebounding')}>Rebounding</button>
-                <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleTag('Shooting')}>Shooting</button>
-                <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleTag('Zone')}>Zone</button>
-            </div>
+                <div className="btn-group" role="group" aria-label="..." >
+                    <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
+                    <button type="button" className="btn btn-lg" id="Dribbling" onClick={() => this.handleTag('Dribbling')}>Dribbling</button>
+                    <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleTag('Man')}>Man</button>
+                    <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleTag('Offense')}>Offense</button>
+                    <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handleTag('Passing')}>Passing</button>
+                    <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleTag('Rebounding')}>Rebounding</button>
+                    <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleTag('Shooting')}>Shooting</button>
+                    <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleTag('Zone')}>Zone</button>
+                </div>
             </div>
             <br />
 

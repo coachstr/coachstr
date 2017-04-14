@@ -32,20 +32,26 @@ class Drill extends React.Component {
     getInfo() {
         var token = sessionStorage.getItem('token');
         let id = this.props.params.drillId
-        fetch('/api/drills?token=' + token)
-        .then(function(response) {
-        return response.json();
-        })
-        .then(response => this.setState({ drills: response.drills}))
-        .then(this.findIndex)
+
+        if (token === null) {
+            alert('You must be signed in to create drills')
+            browserHistory.push('/')
+        } else {
+            fetch('/api/drills?token=' + token)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(response => this.setState({ drills: response.drills }))
+                .then(this.findIndex)
+        }
     }
 
     findIndex() {
         for (var i = 0; i < this.state.drills.length; i++) {
             if (this.state.drills[i].id == this.props.params.drillId) {
-                this.setState({ title: this.state.drills[i].title})
-                this.setState({ description: this.state.drills[i].description})
-                this.setState({ duration: this.state.drills[i].duration})
+                this.setState({ title: this.state.drills[i].title })
+                this.setState({ description: this.state.drills[i].description })
+                this.setState({ duration: this.state.drills[i].duration })
             } else {
                 console.log("no match state" + this.state.drills[i].id)
                 console.log('this is not ' + this.props.params.drillId)
@@ -60,8 +66,8 @@ class Drill extends React.Component {
 
     addTag(tag) {
         if (this.state.tags.length === 0) {
-        this.setState.tags = this.state.tags.push(tag)
-        console.log("no tags " + this.state.tags)
+            this.setState.tags = this.state.tags.push(tag)
+            console.log("no tags " + this.state.tags)
 
         } else {
             this.setState.tags = this.state.tags.push(tag)
@@ -109,14 +115,14 @@ class Drill extends React.Component {
                 })
             })
 
-        alert('Your drill has been saved')
+            alert('Your drill has been saved')
 
-        browserHistory.push('/drills/' + this.props.params.id)
+            browserHistory.push('/drills/' + this.props.params.id)
 
-        console.log(newDrillObject)
-    } else {
-        console.log("drill params defined")
-        fetch('/api/drills/' + id, {
+            console.log(newDrillObject)
+        } else {
+            console.log("drill params defined")
+            fetch('/api/drills/' + id, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -133,41 +139,41 @@ class Drill extends React.Component {
                 })
             })
 
-        alert('Your drill has been updated')
+            alert('Your drill has been updated')
 
-        browserHistory.push('/drills')
+            browserHistory.push('/drills')
 
-        console.log(newDrillObject)
+            console.log(newDrillObject)
+        }
+
     }
-
-}
 
 
     render() {
 
 
         return <div>
-            <Header title={'Plan ' + this.state.id}/>
+            <Header title={'Plan ' + this.state.id} />
             <div className="container">
-                <br/>
-            <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills/' + this.props.params.planId)}><i className="material-icons left">fast_rewind</i>Back</a>
-            <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
-            <div className="form-group">
-                <label htmlFor="instructions">Instructions</label>
-                <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
-            </div>
-            <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
+                <br />
+                <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills/' + this.props.params.planId)}><i className="material-icons left">fast_rewind</i>Back</a>
+                <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
+                <div className="form-group">
+                    <label htmlFor="instructions">Instructions</label>
+                    <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
+                </div>
+                <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
 
-            <div className="btn-group" role="group" aria-label="..." >
-                <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
-                <button type="button" className="btn btn-lg" id="Dribbling" onClick={() => this.handleTag('Dribbling')}>Dribbling</button>
-                <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleTag('Man')}>Man</button>
-                <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleTag('Offense')}>Offense</button>
-                <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handleTag('Passing')}>Passing</button>
-                <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleTag('Rebounding')}>Rebounding</button>
-                <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleTag('Shooting')}>Shooting</button>
-                <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleTag('Zone')}>Zone</button>
-            </div>
+                <div className="btn-group" role="group" aria-label="..." >
+                    <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
+                    <button type="button" className="btn btn-lg" id="Dribbling" onClick={() => this.handleTag('Dribbling')}>Dribbling</button>
+                    <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleTag('Man')}>Man</button>
+                    <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleTag('Offense')}>Offense</button>
+                    <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handleTag('Passing')}>Passing</button>
+                    <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleTag('Rebounding')}>Rebounding</button>
+                    <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleTag('Shooting')}>Shooting</button>
+                    <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleTag('Zone')}>Zone</button>
+                </div>
             </div>
             <br />
 

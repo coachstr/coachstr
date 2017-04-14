@@ -28,21 +28,27 @@ class Plans extends Component {
 
   getPlans() {
     var token = sessionStorage.getItem('token');
+    console.log('token ' + token)
 
-    fetch('/api/plans?token=' + token)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(response => this.setState({ plans: response.plans }))
+    if (token === null) {
+      alert('You must be signed in to view plans')
+      browserHistory.push('/')
+    } else {
+      fetch('/api/plans?token=' + token)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(response => this.setState({ plans: response.plans }))
+    }
   }
 
   render() {
     console.log('plans ' + this.state.plans)
 
-      let plans = this.state.plans.map((plan, key) => {
-      console.log(plan) 
-      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags} duration={plan.total_duration}/>
-        })
+    let plans = this.state.plans.map((plan, key) => {
+      console.log(plan)
+      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags} duration={plan.total_duration} />
+    })
 
     return (
       <div>

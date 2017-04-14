@@ -7,7 +7,7 @@ import { Router, Route, browserHistory } from 'react-router'
 // Load page view components
 // Import your Todos and Completed components here...
 
-import Main from './Main'
+import Drills from './Drills'
 import Signin from './Signin'
 import Signup from './Signup'
 import Plans from './Plans'
@@ -18,12 +18,12 @@ import Plan from './Plan'
 class Routes extends React.Component {
     render() {
         return <Router history={browserHistory}>
-            <Route path="/drills/:planId" component={Main} />
+            <Route path="/drills/:planId" component={Drills} />
             <Route path="/" component={Signin} />
             <Route path="/signup" component={Signup} />
             <Route path="/plans" component={Plans} />
             <Route path="/plan/:planId" component={Plan} />
-            <Route path="/drill/:drillId" component={Drill} />
+            <Route path="/drill/:planId/:drillId" component={Drill} />
         </Router>
     }
 }
