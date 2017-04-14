@@ -117,7 +117,7 @@ class Drill extends React.Component {
 
             alert('Your drill has been saved')
 
-            browserHistory.push('/drills/' + this.props.params.id)
+            browserHistory.push('/drills/' + this.props.params.planId)
 
             console.log(newDrillObject)
         } else {
@@ -141,7 +141,7 @@ class Drill extends React.Component {
 
             alert('Your drill has been updated')
 
-            browserHistory.push('/drills')
+            browserHistory.push('/drills/' + this.props.params.planId)
 
             console.log(newDrillObject)
         }
