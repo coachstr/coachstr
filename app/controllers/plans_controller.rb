@@ -88,9 +88,18 @@ class PlansController < ApplicationController
       pre_plan_params[:drills] = []
     else
       drills = []
-      pre_plan_params[:drills]&.each do |id|
-      drills << Drill.find_by(id: id)
-      pre_plan_params[:drills] = drills
+      pre_plan_params[:drills]&.each_with_index do |drill_id, id|
+        if id < 10
+          id = "00#{id}".to_s
+        elsif id > 9 && id < 100
+          id = "0#{id}".to_s
+        else
+          id = id.to_s
+        end
+
+        # binding.pry
+        drills << [drill_id: Drill.find_by(id: drill_id), order_by: id]
+        pre_plan_params[:drills] = drills
       end
     end
     return pre_plan_params
