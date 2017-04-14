@@ -2,6 +2,7 @@ import React from 'react'
 import { browserHistory } from 'react-router'
 
 import Chip from './Chip'
+import PlanDrill from './PlanDrill'
 
 class PlanCard extends React.Component {
 
@@ -10,7 +11,8 @@ class PlanCard extends React.Component {
 
         this.state= {
             plans: [],
-            tags: []
+            tags: [],
+            drills: []
         }
 
     // this.addToPlan = this.addToPlan.bind(this)
@@ -62,14 +64,21 @@ class PlanCard extends React.Component {
       return <Chip tag={tag.name}/>
     })
 
+    let drills = this.props.drills.map((drill, key) => {
+        console.log(drill.title)
+        return <PlanDrill drill={drill.title} />
+    })
+
         return <div className="col-sm-6 col-m-4" >
             <div className="card blue-grey darken-1 small">
                 <div className="card-content white-text" onClick={this.viewPlan}>
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
-                    <p>{this.props.description}</p>
+                    <ul>
+                        {drills}
+                    </ul>
                 </div>
                 <div className="card-action">
-                    {/*{tags}*/}
+                    {tags}
                 </div>
 
                  {/*<a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>*/}
