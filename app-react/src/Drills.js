@@ -7,7 +7,7 @@ import Card from './components/Card'
 import PlanItem from './components/PlanItem'
 
 
-class Main extends Component {
+class Drills extends Component {
   constructor(props) {
     super(props)
 
@@ -33,7 +33,7 @@ class Main extends Component {
       this.setState.drills = this.state.drills.push(drill)
       console.log("drills from adddrill" + this.state.drills)
     }
-    console.log('function from main to card' + this.state.drills)
+    console.log('function from drills to card' + this.state.drills)
   }
 
   componentWillMount() {
@@ -45,11 +45,16 @@ class Main extends Component {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
 
-    fetch('/api/drills?token=' + token)
-      .then(function (response) {
-        return response.json();
-      })
-    .then(response =>  this.setState({ drills: response.drills }))
+    if (token === null) {
+      alert('You must be signed in to view drills')
+      browserHistory.push('/')
+    } else {
+      fetch('/api/drills?token=' + token)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(response => this.setState({ drills: response.drills }))
+    }
   }
 
   getPlanDrills() {
@@ -57,40 +62,40 @@ class Main extends Component {
     let id = this.props.params.planId
     console.log('getplandrills')
 
-     fetch('/api/plans/'+ id +'?token=' + token)
-        .then(function(response) {
+    fetch('/api/plans/' + id + '?token=' + token)
+      .then(function (response) {
         return response.json();
       })
-      .then(response =>  this.setState({ incomingPlanDrills: response.plan.drills }))
+      .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
   }
 
   savePlan() {
     let id = this.props.params.planId
     var token = sessionStorage.getItem('token')
     fetch('/api/plans/' + id, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    drills: this.state.planDrills,
-                    token: token
-                })
-            })
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        drills: this.state.planDrills,
+        token: token
+      })
+    })
     console.log(this.state.planDrills)
-    alert('Your plan has been saved') 
+    alert('Your plan has been saved')
   }
 
   render() {
 
     let incomingPlanDrills = this.state.incomingPlanDrills.map((incomingDrill, key) => {
       console.log(incomingDrill)
-      return <PlanItem key={key} title={incomingDrill.title}/>
+      return <PlanItem key={key} title={incomingDrill.title} />
     })
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} addItemFunction={this.getPlanDrills}/>
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} addItemFunction={this.getPlanDrills} />
     })
 
     return (
@@ -121,4 +126,4 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Drills;
