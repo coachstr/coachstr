@@ -95,14 +95,15 @@ class Drills extends Component {
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} addItemFunction={this.getPlanDrills} />
+      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} planId={this.props.params.planId}
+        />
     })
 
     return (
       <div>
         <Header title={'Plan ' + this.props.params.planId} />
         <div className="container">
-          <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.id)}><i className="material-icons">add</i></a>
+          <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.params.planId + '/' + this.props.id)}><i className="material-icons">add</i></a>
         </div>
 
         <div className="container">
