@@ -15,12 +15,14 @@ class Drills extends Component {
       drills: [],
       planDrills: [],
       incomingPlanDrills: [],
+      planTitle: '',
       id: ''
     }
 
     // this.addDrill = this.addDrill.bind(t his)
     this.getDrills = this.getDrills.bind(this)
     this.getPlanDrills = this.getPlanDrills.bind(this)
+    this.getPlanName = this.getPlanName.bind(this)
     this.savePlan = this.savePlan.bind(this)
 
   }
@@ -39,6 +41,7 @@ class Drills extends Component {
   componentWillMount() {
     this.getDrills()
     this.getPlanDrills()
+    this.getPlanName()
   }
 
   getDrills() {
@@ -66,7 +69,20 @@ class Drills extends Component {
       .then(function (response) {
         return response.json();
       })
+      .then(response => console.log(response))
       .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
+  }
+
+    getPlanName() {
+    var token = sessionStorage.getItem('token');
+    let id = this.props.params.planId
+    console.log('getplandrills')
+
+    fetch('/api/plans/' + id + '?token=' + token)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(response => this.setState({ planTitle: response.plan.title }))
   }
 
   savePlan() {
@@ -101,7 +117,7 @@ class Drills extends Component {
 
     return (
       <div>
-        <Header title={'Plan ' + this.props.params.planId} />
+        <Header title={this.state.planTitle} />
         <div className="container">
           <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.params.planId + '/' + this.props.id)}><i className="material-icons">add</i></a>
         </div>
