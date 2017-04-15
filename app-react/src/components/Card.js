@@ -62,16 +62,18 @@ class Card extends React.Component {
         alert('This drill has been added to your plan')
     }
 
-    addDrill(drill, drillArray, getPlanDrills) {
-        if (drillArray.length === 0) {
-            drillArray = drillArray.push(drill)
+    addDrill(drillId, drillTitle, drillIdArray, drillTitleArray, getPlanDrills) {
+        if (drillIdArray.length === 0) {
+            drillIdArray = drillIdArray.push(drillId)
+            drillTitleArray = drillTitleArray.push(drillTitle)
         } else {
-            drillArray = drillArray.push(drill)
+            drillIdArray = drillIdArray.push(drillId)
+            drillTitleArray = drillTitleArray.push(drillTitle)
         }
 
         getPlanDrills()
 
-        alert('you have added drill #' + drill)
+        alert('you have added ' + drillTitle.title)
     }
 
     render() {
@@ -89,7 +91,7 @@ class Card extends React.Component {
                     {tags}
                 </div>
 
-                <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drillArray, this.props.addItemFunction)}><i className="material-icons">add</i></a>
+                <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drill, this.props.drillIdArray, this.props.drillTitleArray, this.props.addItemFunction)}><i className="material-icons">add</i></a>
             </div>
 
         </div>

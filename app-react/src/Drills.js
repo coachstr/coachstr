@@ -15,6 +15,7 @@ class Drills extends Component {
       drills: [],
       planDrills: [],
       incomingPlanDrills: [],
+      drillTitles: [],
       planTitle: '',
       id: ''
     }
@@ -23,6 +24,7 @@ class Drills extends Component {
     this.getDrills = this.getDrills.bind(this)
     this.getPlanDrills = this.getPlanDrills.bind(this)
     this.getPlanName = this.getPlanName.bind(this)
+    this.viewNewDrills = this.viewNewDrills.bind(this)
     this.savePlan = this.savePlan.bind(this)
 
   }
@@ -69,14 +71,18 @@ class Drills extends Component {
       .then(function (response) {
         return response.json();
       })
-      .then(response => console.log(response))
       .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
+  }
+
+  viewNewDrills() {
+    this.setState({ incomingPlanDrills: this.state.drillTitles })
+    console.log(this.state.drillTitles)
   }
 
     getPlanName() {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
-    console.log('getplandrills')
+    console.log('getplanname')
 
     fetch('/api/plans/' + id + '?token=' + token)
       .then(function (response) {
@@ -99,7 +105,8 @@ class Drills extends Component {
       })
     })
     console.log(this.state.planDrills)
-    alert('Your plan has been saved')
+    browserHistory.push('/plans')
+    alert('Your plan has been saved ')
   }
 
   render() {
@@ -111,7 +118,7 @@ class Drills extends Component {
 
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
-      return <Card key={key} id={drill.id} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillArray={this.state.planDrills} planId={this.props.params.planId} addItemFunction={this.getPlanDrills}
+      return <Card key={key} id={drill.id} drill={drill} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillIdArray={this.state.planDrills} planId={this.props.params.planId} drillTitleArray={this.state.drillTitles} addItemFunction={this.viewNewDrills}
         />
     })
 
