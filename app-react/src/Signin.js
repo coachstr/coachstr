@@ -8,6 +8,7 @@ class Signin extends Component {
         super(props)
 
         this.signin = this.signin.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
 
         this.state= {
             email: '',
@@ -52,6 +53,12 @@ class Signin extends Component {
 
     }
 
+    handleKeyPress(e) {
+        if(e.key === 'Enter') {
+        this.signin()
+        }
+    }
+
     render() {
         return (
             <div>
@@ -69,13 +76,13 @@ class Signin extends Component {
                         <div className="card-content">
                             <form action="#">
                                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input className="mdl-textfield__input" type="text" id="email"  value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
+                                    <input className="mdl-textfield__input" type="text" id="email"  value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} onKeyPress={(e) => this.handleKeyPress(e)}/>
                                     <label className="mdl-textfield__label" htmlFor="email">Email</label>
                                 </div>
                             </form>
                             <form action="#">
                                 <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input className="mdl-textfield__input" type="password" id="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})}/>
+                                    <input className="mdl-textfield__input" type="password" id="password" value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} onKeyPress={(e) => this.handleKeyPress(e)}/>
                                     <label className="mdl-textfield__label" htmlFor="password">Password</label>
                                 </div>
                             </form>
