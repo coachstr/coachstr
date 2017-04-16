@@ -79,7 +79,7 @@ class Drills extends Component {
     console.log(this.state.drillTitles)
   }
 
-    getPlanName() {
+  getPlanName() {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
     console.log('getplanname')
@@ -119,34 +119,56 @@ class Drills extends Component {
     let drills = this.state.drills.map((drill, key) => {
       console.log(drill)
       return <Card key={key} id={drill.id} drill={drill} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillIdArray={this.state.planDrills} planId={this.props.params.planId} drillTitleArray={this.state.drillTitles} addItemFunction={this.viewNewDrills}
-        />
+      />
     })
 
-    return (
-      <div>
-        <Header title={this.state.planTitle} />
-        <div className="container">
-          <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.params.planId + '/' + this.props.id)}><i className="material-icons">add</i></a>
-        </div>
+    if (drills.length === 0) {
 
-        <div className="container">
-          <div className="leftColumn col-sm-3">
-            <h2 className="text-center newFont">Plan</h2>
-            <ul className="collection planItems">
-              {incomingPlanDrills}
-              <li className="collection-item text-center savePlan" onClick={this.savePlan}>Save Plan</li>
-            </ul>
+      return (
+        <div>
+          <Header title={this.state.planTitle} />
+          <div className="container">
+            <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.params.planId + '/' + this.props.id)}><i className="material-icons">add</i></a>
           </div>
 
-          <div className="rightColumn col-sm-9">
-            <h2 className="text-center newFont">Drills</h2>
-            {drills}
+          <div className="container">
+
+            <h2 className="text-center">Plans</h2>
+            <h3 className="text-center">It looks like you don't have any drills. Click the button to add one.</h3>
+
           </div>
 
         </div>
+      );
 
-      </div>
-    );
+    } else {
+
+      return (
+        <div>
+          <Header title={this.state.planTitle} />
+          <div className="container">
+            <a className="btn-floating btn-large waves-effect waves-light red" onClick={() => browserHistory.push('/drill/' + this.props.params.planId + '/' + this.props.id)}><i className="material-icons">add</i></a>
+          </div>
+
+          <div className="container">
+            <div className="leftColumn col-sm-3">
+              <h2 className="text-center newFont">Plan</h2>
+              <ul className="collection planItems">
+                {incomingPlanDrills}
+                <li className="collection-item text-center savePlan" onClick={this.savePlan}>Save Plan</li>
+              </ul>
+            </div>
+
+            <div className="rightColumn col-sm-9">
+              <h2 className="text-center newFont">Drills</h2>
+              {drills}
+            </div>
+
+          </div>
+
+        </div>
+      );
+    }
   }
 }
 
