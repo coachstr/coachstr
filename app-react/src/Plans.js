@@ -50,6 +50,26 @@ class Plans extends Component {
       return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags} duration={plan.total_duration} drills={plan.drills} />
     })
 
+    if (plans.length === 0) {
+        return (
+      <div>
+        <Header title='Plans' />
+
+        <div className="container">
+          <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.addPlan}><i className="material-icons">add</i></a>
+        </div>
+
+        <div className="container">
+
+          <h2 className="text-center">Plans</h2>
+          <h3 className="text-center">It looks like you don't have any plans. Click the button to add one.</h3>
+
+        </div>
+
+      </div>
+    );
+    } else {
+
     return (
       <div>
         <Header title='Plans' />
@@ -66,6 +86,7 @@ class Plans extends Component {
 
       </div>
     );
+    }
   }
 }
 
