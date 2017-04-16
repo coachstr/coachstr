@@ -6,9 +6,7 @@ class Drill extends React.Component {
     constructor(props) {
         super(props)
 
-        this.addTag = this.addTag.bind(this)
         this.newDrill = this.newDrill.bind(this)
-        this.handleTag = this.handleTag.bind(this)
         this.getInfo = this.getInfo.bind(this)
         this.findIndex = this.findIndex.bind(this)
 
@@ -17,6 +15,7 @@ class Drill extends React.Component {
             description: '',
             duration: '',
             tags: [],
+            tagString: '',
             libraries: [],
             plans: [],
             drills: [],
@@ -59,27 +58,11 @@ class Drill extends React.Component {
         }
     }
 
-    handleTag(tag) {
-        this.addTag(tag)
-        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    }
-
-    addTag(tag) {
-        if (this.state.tags.length === 0) {
-            this.setState.tags = this.state.tags.push(tag)
-            console.log("no tags " + this.state.tags)
-
-        } else {
-            this.setState.tags = this.state.tags.push(tag)
-            console.log("tags " + this.state.tags)
-        }
-    }
-
     newDrill() {
         var title = this.state.title
         var description = this.state.description
         var duration = this.state.duration
-        var tags = this.state.tags
+        var tags = this.state.tagString.split(',')
         var token = sessionStorage.getItem('token')
         var plans = this.state.plans
         var libraries = this.state.libraries
@@ -153,7 +136,6 @@ class Drill extends React.Component {
 
 
         return <div>
-            {/*<Header title={'Plan ' + this.state.id} />*/}
             <Header title={this.state.title} />
             
             <div className="container">
@@ -165,17 +147,8 @@ class Drill extends React.Component {
                     <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
                 </div>
                 <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
-
-                <div className="btn-group" role="group" aria-label="..." >
-                    <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
-                    <button type="button" className="btn btn-lg" id="Dribbling" onClick={() => this.handleTag('Dribbling')}>Dribbling</button>
-                    <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleTag('Man')}>Man</button>
-                    <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleTag('Offense')}>Offense</button>
-                    <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handleTag('Passing')}>Passing</button>
-                    <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleTag('Rebounding')}>Rebounding</button>
-                    <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleTag('Shooting')}>Shooting</button>
-                    <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleTag('Zone')}>Zone</button>
-                </div>
+                
+                <input type="text" className="form-control" placeholder="Enter tags" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} />
             </div>
             <br />
 

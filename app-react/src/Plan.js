@@ -9,15 +9,14 @@ class Plan extends React.Component {
     constructor(props) {
         super(props)
 
-        this.addTag = this.addTag.bind(this)
         this.newPlan = this.newPlan.bind(this)
-        this.handleTag = this.handleTag.bind(this)
         this.getInfo = this.getInfo.bind(this)
         // this.findIndex = this.findIndex.bind(this)
 
         this.state = {
             title: '',
             tags: [],
+            tagString: '',
             libraries: [],
             plans: [],
             id: ''
@@ -59,25 +58,9 @@ class Plan extends React.Component {
     //     }
     // }
 
-    handleTag(tag) {
-        this.addTag(tag)
-        document.getElementById(`${tag}`).setAttribute("disabled", "disabled")
-    }
-
-    addTag(tag) {
-        if (this.state.tags.length === 0) {
-            this.setState.tags = this.state.tags.push(tag)
-            console.log("no tags " + this.state.tags)
-
-        } else {
-            this.setState.tags = this.state.tags.push(tag)
-            console.log("tags " + this.state.tags)
-        }
-    }
-
     newPlan() {
         var title = this.state.title
-        var tags = this.state.tags
+        var tags = this.state.tagString.split(',')
         var token = sessionStorage.getItem('token')
         var id = this.props.params.planId
 
@@ -91,7 +74,7 @@ class Plan extends React.Component {
         if (title === '') {
             alert('You must complete all fields')
         }
-        else if (this.props.params.planId == 'undefined') {
+        else {
             console.log("params = " + this.props.params.planId)
             fetch('/api/plans', {
                 method: 'POST',
@@ -111,26 +94,6 @@ class Plan extends React.Component {
             browserHistory.push('/plans')
 
             console.log(newPlanObject)
-        } else {
-            console.log("plans params defined")
-            fetch('/api/plans/' + id, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    title: title,
-                    token: token,
-                    tags: tags,
-                    id: id
-                })
-            })
-
-            alert('Your plan has been updated')
-
-            // browserHistory.push('/plans')
-
-            console.log(newPlanObject)
         }
 
     }
@@ -145,17 +108,7 @@ class Plan extends React.Component {
                 <br />
                 <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/plans')}><i className="material-icons left">fast_rewind</i>Back</a>
                 <input type="text" className="form-control" placeholder="Enter plan title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
-
-                <div className="btn-group" role="group" aria-label="..." >
-                    <button type="button" className="btn btn-lg" id="Defense" onClick={() => this.handleTag('Defense')} >Defense</button>
-                    <button type="button" className="btn btn-lg" id="Dribbling" onClick={() => this.handleTag('Dribbling')}>Dribbling</button>
-                    <button type="button" className="btn btn-lg" id="Man" onClick={() => this.handleTag('Man')}>Man</button>
-                    <button type="button" className="btn btn-lg" id="Offense" onClick={() => this.handleTag('Offense')}>Offense</button>
-                    <button type="button" className="btn btn-lg" id="Passing" onClick={() => this.handleTag('Passing')}>Passing</button>
-                    <button type="button" className="btn btn-lg" id="Rebounding" onClick={() => this.handleTag('Rebounding')}>Rebounding</button>
-                    <button type="button" className="btn btn-lg" id="Shooting" onClick={() => this.handleTag('Shooting')}>Shooting</button>
-                    <button type="button" className="btn btn-lg" id="Zone" onClick={() => this.handleTag('Zone')}>Zone</button>
-                </div>
+                <input type="text" className="form-control" placeholder="Enter tags" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} />
             </div>
             <br />
 
