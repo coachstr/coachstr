@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       render json: @user, serializer: UserExpandedSerializer
     else
-      flash[:danger] = "Incorrect credentials. Please try again."
+      render json: @user.errors.full_messages, status: 400
     end
   end
 
