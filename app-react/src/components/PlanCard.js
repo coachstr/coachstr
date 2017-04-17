@@ -83,7 +83,7 @@ class PlanCard extends React.Component {
 
         return <div className="col-sm-4 col-m-4" >
             <div className="card blue-grey darken-1 small">
-                <div className="card-content white-text" onClick={this.viewPlan}>
+                <div className="card-content white-text" onClick={this.open}>
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
                     <ul>
                         {drills}
@@ -103,7 +103,7 @@ class PlanCard extends React.Component {
                         </ul>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className="text-center" onClick={this.viewPlan}>View Plan</Button>
+                        <Button className="text-center" onClick={this.viewPlan}>Edit Plan</Button>
                     </Modal.Footer>
                 </Modal>
 
