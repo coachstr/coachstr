@@ -136,7 +136,7 @@ class Drills extends Component {
 
           <div className="container">
 
-            <h2 className="text-center">Plans</h2>
+            <h2 className="text-center">Drills</h2>
             <h3 className="text-center">It looks like you don't have any drills. Click the button to add one.</h3>
 
           </div>

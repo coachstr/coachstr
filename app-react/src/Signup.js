@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
+import {Row, Input } from 'react-materialize'
 
 
 class Signup extends Component {
@@ -85,30 +86,12 @@ class Signup extends Component {
                         </div>
                         <div className="card-stacked">
                             <div className="card-content">
-                                <form action="#">
-                                    <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input className="mdl-textfield__input" type="text" id="name" value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
-                                        <label className="mdl-textfield__label" htmlFor="name">Name</label>
-                                    </div>
-                                </form>
-                                <form action="#">
-                                    <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input className="mdl-textfield__input" type="text" id="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
-                                        <label className="mdl-textfield__label" htmlFor="email">Email</label>
-                                    </div>
-                                </form>
-                                <form action="#">
-                                    <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input className="mdl-textfield__input" type="password" id="password" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
-                                        <label className="mdl-textfield__label" htmlFor="password">Password</label>
-                                    </div>
-                                </form>
-                                <form action="#">
-                                    <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                        <input className="mdl-textfield__input" type="password" id="confirmPassword" value={this.state.confirmPassword} onChange={(e) => this.setState({ confirmPassword: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
-                                        <label className="mdl-textfield__label" htmlFor="confirmPassword">Confirm Password</label>
-                                    </div>
-                                </form>
+                              <Row>
+                                <Input s={12} label="Name"  type="text" id="name" value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                                <Input s={12} label="Email"  type="text" id="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                                <Input s={12} label="Password"  type="password" id="password" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                                <Input s={12} label="Confirm Password"  type="password" id="confirmPassword" value={this.state.confirmPassword} onChange={(e) => this.setState({ confirmPassword: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                            </Row>
                             </div>
                             <div className="card-action">
                                 <div className="waves-effect waves-light btn-large" onClick={this.signup}>Sign Up</div>
