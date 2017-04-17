@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Start seeding"
 
-tags = ['Offense', 'Defense', 'Zone', 'Man', 'Team', 'Individual', 'Dribbling', 'Passing', 'Shooting', 'Rebound']
+tags = ['Defense', 'Dribbling', 'Individual', 'Man', 'Offense', 'Passing', 'Rebound', 'Shooting', 'Team', 'Zone']
 
 tags.each do |tag|
   Tag.create(name: tag)
