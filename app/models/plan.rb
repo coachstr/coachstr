@@ -7,4 +7,6 @@ class Plan < ApplicationRecord
 
   validates :title, presence: true
   # validates :total_duration, presence: true
+
+
 end

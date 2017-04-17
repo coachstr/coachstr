@@ -5,7 +5,7 @@ FactoryGirl.define do |library|
     user
 
     transient do
-      drills_count   5
+      drill_count   5
     end
 
     factory :library_with_drills do
