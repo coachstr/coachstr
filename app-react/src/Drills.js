@@ -17,6 +17,7 @@ class Drills extends Component {
       incomingPlanDrills: [],
       drillTitles: [],
       planTitle: '',
+      // planNumber: '',
       id: ''
     }
 
@@ -72,10 +73,12 @@ class Drills extends Component {
         return response.json();
       })
       .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
+      // .then(response => this.setState({planNumber : this.state.incomingPlanDrills.length}))
   }
 
   viewNewDrills() {
     this.setState({ incomingPlanDrills: this.state.drillTitles })
+    // this.setState({planNumber : this.state.drillTitles.length})
     console.log(this.state.drillTitles)
   }
 
@@ -153,6 +156,7 @@ class Drills extends Component {
           <div className="container">
             <div className="leftColumn col-sm-3">
               <h2 className="text-center newFont">Plan</h2>
+              {/*<h4 className="text-center newFont">({this.state.planNumber}/8)</h4>*/}
               <ul className="collection planItems">
                 {incomingPlanDrills}
                 <li className="collection-item text-center savePlan" onClick={this.savePlan}>Save Plan</li>
