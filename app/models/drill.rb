@@ -15,6 +15,8 @@ class Drill < ApplicationRecord
   validates :default_avatar,  require: false
   validates :duration, numericality: true
 
+  default_scope {order('title asc')}
+
   def personage(version = :standard)
     if drill_pic?
       drill_pic.versions[version].url
