@@ -63,7 +63,7 @@ class Signin extends Component {
         return (
             <div>
             <div className="jumbotron text-center">
-                <h1>Coachstr</h1> 
+                <h1>Coachstr</h1>
                 <p>We're Talking About Practice</p>
             </div>
             <div className="col s6 m6 container signinCard text-center">
@@ -89,7 +89,7 @@ class Signin extends Component {
                         </div>
                         <div className="card-action">
                             <div className="waves-effect waves-light btn-large" onClick={this.signin}>Sign In</div>
-                            <br/><br/>  
+                            <br/><br/>
                             <div className="waves-effect waves-light " onClick={() => browserHistory.push('/signup')}>Sign Up</div>
                         </div>
                     </div>
