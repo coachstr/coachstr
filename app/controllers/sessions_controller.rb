@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       render json: @user, serializer: UserExpandedSerializer
     else
         error_message = "You need an account to login"
-        {:error => error_message}
+        error = {:error => error_message}
         @errors = {:errors => error}
         render json: @errors, status: 401
     end
