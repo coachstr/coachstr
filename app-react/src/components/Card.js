@@ -73,7 +73,7 @@ class Card extends React.Component {
 
         getPlanDrills()
 
-        alert('you have added ' + drillTitle.title)
+        // alert('you have added ' + drillTitle.title)
     }
 
     render() {
