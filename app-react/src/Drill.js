@@ -16,6 +16,7 @@ class Drill extends React.Component {
             duration: '',
             tags: [],
             tagString: '',
+            incomingTagArray: [],
             libraries: [],
             plans: [],
             drills: [],
@@ -46,11 +47,20 @@ class Drill extends React.Component {
     }
 
     findIndex() {
+        var incomingTagArray = new Array()
         for (var i = 0; i < this.state.drills.length; i++) {
             if (this.state.drills[i].id == this.props.params.drillId) {
                 this.setState({ title: this.state.drills[i].title })
                 this.setState({ description: this.state.drills[i].description })
                 this.setState({ duration: this.state.drills[i].duration })
+                for (var j = 0; j < this.state.drills[i].tags.length; j++) {
+                    // console.log(incomingTagArray.length)
+                    incomingTagArray: incomingTagArray.push(this.state.drills[i].tags[j].name)
+                    this.setState({tagString: incomingTagArray.toString()})
+                    // incomingTagArray = incomingTagArray.push(this.state.drills[i].tags[j].name)
+                    // console.log(incomingTagArray.length)
+                    
+                }
             } else {
                 console.log("no match state" + this.state.drills[i].id)
                 console.log('this is not ' + this.props.params.drillId)
@@ -137,7 +147,7 @@ class Drill extends React.Component {
 
         return <div>
             <Header title={this.state.title} />
-            
+
             <div className="container">
                 <br />
                 <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills/' + this.props.params.planId)}><i className="material-icons left">fast_rewind</i>Back</a>
@@ -147,8 +157,8 @@ class Drill extends React.Component {
                     <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
                 </div>
                 <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
-                
-                <input type="text" className="form-control" placeholder="Enter tags" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} />
+
+                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} />
             </div>
             <br />
 
