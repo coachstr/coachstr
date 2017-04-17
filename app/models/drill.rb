@@ -13,6 +13,7 @@ class Drill < ApplicationRecord
   validates :description, presence: true
   validates :duration, presence: true
   validates :default_avatar,  require: false
+  validates :duration, numericality: true
 
   def personage(version = :standard)
     if drill_pic?

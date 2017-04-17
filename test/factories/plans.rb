@@ -20,7 +20,7 @@ FactoryGirl.define do |plan|
     factory :plan_with_drills do
       after(:create) do |job, evaluator|
         evaluator.drill_count.times do
-          job.drills << build(:drills)
+          job.drills << build(:drill)
         end
       end
     end
