@@ -82,7 +82,7 @@ class Card extends React.Component {
         })
 
         return <div className="col-sm-6 col-m-4" >
-            <div className="card blue-grey darken-1 small">
+            <div className="card blue-grey darken-1 small drillCard">
                 <div className="card-content white-text" onClick={() => this.viewDrill(this.props.planId)}>
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
                     <p>{this.props.description}</p>

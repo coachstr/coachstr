@@ -52,7 +52,7 @@ img {
 
 .cardFab {
     position: absolute;
-    bottom: 50px;
+    bottom: -20px;
 }
 
 .backButton {
@@ -80,4 +80,8 @@ img {
 
 .z-depth-4, .modal {
     box-shadow: 0 8px 10px 1px rgba(0,0,0,0)
+}
+
+.drillCard {
+    margin-bottom: 25px;
 }

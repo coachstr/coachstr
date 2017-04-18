@@ -64,15 +64,15 @@ class Drills extends Component {
   }
 
   getPlanDrills() {
-    var token = sessionStorage.getItem('token');
-    let id = this.props.params.planId
-    console.log('getplandrills')
+    // var token = sessionStorage.getItem('token');
+    // let id = this.props.params.planId
+    // console.log('getplandrills')
 
-    fetch('/api/plans/' + id + '?token=' + token)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
+    // fetch('/api/plans/' + id + '?token=' + token)
+    //   .then(function (response) {
+    //     return response.json();
+    //   })
+    //   .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
       // .then(response => this.setState({planNumber : this.state.incomingPlanDrills.length}))
   }
 
