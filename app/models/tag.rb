@@ -5,6 +5,6 @@ class Tag < ApplicationRecord
   has_many :drills, through: :taggings, source: :taggable, source_type: 'Drill'
 
   validates :name, presence: true
-  default_scope {order('name')}
+  default_scope {order('lower(name)')}
 
 end

@@ -6,7 +6,8 @@ class Plan < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
-  # validates :total_duration, presence: true
+
+  default_scope {order('lower(title) asc')}
 
 
 end

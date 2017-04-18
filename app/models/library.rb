@@ -5,4 +5,6 @@ class Library < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
+
+  default_scope {order('lower(title) asc')}
 end

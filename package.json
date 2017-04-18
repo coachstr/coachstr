@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-bootstrap": "^0.30.8",
+    "react-materialize": "^0.18.1"
+  }
+}
