@@ -54,12 +54,8 @@ class Drill extends React.Component {
                 this.setState({ description: this.state.drills[i].description })
                 this.setState({ duration: this.state.drills[i].duration })
                 for (var j = 0; j < this.state.drills[i].tags.length; j++) {
-                    // console.log(incomingTagArray.length)
                     incomingTagArray: incomingTagArray.push(this.state.drills[i].tags[j].name)
                     this.setState({tagString: incomingTagArray.toString()})
-                    // incomingTagArray = incomingTagArray.push(this.state.drills[i].tags[j].name)
-                    // console.log(incomingTagArray.length)
-                    
                 }
             } else {
                 console.log("no match state" + this.state.drills[i].id)

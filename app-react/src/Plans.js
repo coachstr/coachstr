@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
+import {Modal, Button} from 'react-bootstrap'
 
 import Header from './components/Header'
 import PlanCard from './components/PlanCard'
@@ -10,11 +11,14 @@ class Plans extends Component {
     super(props)
 
     this.state = {
-      plans: []
+      plans: [],
+      showModal: false
     }
 
     this.addPlan = this.addPlan.bind(this)
     this.getPlans = this.getPlans.bind(this)
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
 
   }
 
@@ -42,6 +46,14 @@ class Plans extends Component {
     }
   }
 
+      close() {
+        this.setState({ showModal: false });
+    }
+
+    open() {
+        this.setState({ showModal: true });
+    }
+
   render() {
     console.log('plans ' + this.state.plans)
 
@@ -56,7 +68,7 @@ class Plans extends Component {
         <Header title='Plans' />
 
         <div className="container">
-          <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.addPlan}><i className="material-icons">add</i></a>
+          <a className="btn-floating btn-large waves-effect waves-light red" onClick={this.open}><i className="material-icons">add</i></a>
         </div>
 
         <div className="container">
@@ -83,6 +95,20 @@ class Plans extends Component {
           <h2 className="text-center">Plans</h2>
           {plans}
         </div>
+
+                        <Modal show={this.state.showModal} onHide={this.close} bsSize="small">
+                    <Modal.Header closeButton className="modal-header">
+                        <Modal.Title>{this.props.title}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <ul>
+                        {/*{drills}*/}
+                        </ul>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button className="text-center" onClick={this.viewPlan}>Edit Plan</Button>
+                    </Modal.Footer>
+                </Modal>
 
       </div>
     );

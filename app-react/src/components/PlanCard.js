@@ -82,8 +82,8 @@ class PlanCard extends React.Component {
         })
 
         return <div className="col-sm-4 col-m-4" >
-            <div className="card blue-grey darken-1 small">
-                <div className="card-content white-text" onClick={this.open}>
+            <div className="card blue-grey darken-1 small" onClick={this.open}>
+                <div className="card-content white-text">
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
                     <ul>
                         {drills}
@@ -94,7 +94,7 @@ class PlanCard extends React.Component {
                 </div>
 
                 <Modal show={this.state.showModal} onHide={this.close} bsSize="small">
-                    <Modal.Header closeButton className="modal-header">
+                    <Modal.Header closeButton className="modal-header text-center">
                         <Modal.Title>{this.props.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
