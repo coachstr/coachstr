@@ -72,3 +72,12 @@ img {
     background-color: lightgray;
     cursor: pointer;
 }
+
+.modal {
+    background: transparent;
+    box-shadow: transparent;
+}
+
+.z-depth-4, .modal {
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0)
+}
