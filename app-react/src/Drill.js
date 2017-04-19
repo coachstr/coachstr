@@ -9,6 +9,7 @@ class Drill extends React.Component {
         this.newDrill = this.newDrill.bind(this)
         this.getInfo = this.getInfo.bind(this)
         this.findIndex = this.findIndex.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
 
         this.state = {
             title: '',
@@ -56,7 +57,7 @@ class Drill extends React.Component {
                 this.setState({ duration: this.state.drills[i].duration })
                 for (var j = 0; j < this.state.drills[i].tags.length; j++) {
                     incomingTagArray: incomingTagArray.push(this.state.drills[i].tags[j].name)
-                    this.setState({tagString: incomingTagArray.toString()})
+                    this.setState({ tagString: incomingTagArray.toString() })
                 }
             } else {
                 console.log("no match state" + this.state.drills[i].id)
@@ -138,6 +139,12 @@ class Drill extends React.Component {
 
     }
 
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.newDrill()
+        }
+    }
+
 
     render() {
 
@@ -148,14 +155,14 @@ class Drill extends React.Component {
             <div className="container">
                 <br />
                 <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/drills/' + this.props.params.planId)}><i className="material-icons left">fast_rewind</i>Back</a>
-                <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
+                <input type="text" className="form-control" placeholder="Enter drill title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
                 <div className="form-group">
                     <label htmlFor="instructions">Instructions</label>
-                    <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })}></textarea>
+                    <textarea className="form-control" rows="10" id="instructions" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)}></textarea>
                 </div>
-                <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} />
+                <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
 
-                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} />
+                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
             </div>
             <br />
 
