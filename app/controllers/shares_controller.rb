@@ -11,9 +11,11 @@ class SharesController < ApplicationController
       if params[:drill_id]
         @drill = Drill.find(params[:drill_id])
         DrillMailer.share(@drill, params[:share][:email]).deliver
+        render json: ['Email has been sent to ' + params[:share][:email]]
       elsif params[:plan_id]
         @plan = Plan.find(params[:plan_id])
         PlanMailer.share(@plan, params[:share][:email]).deliver
+        render json: ['Email has been sent to ' + params[:share][:email]]
       end
     end
   end
