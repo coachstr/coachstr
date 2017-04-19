@@ -126,7 +126,6 @@ class Card extends React.Component {
                     return response.json()
                 })
 
-
                 .then(function (response) {
                     alert(response)
                 })
