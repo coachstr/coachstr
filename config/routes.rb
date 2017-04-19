@@ -8,15 +8,15 @@ Rails.application.routes.draw do
       resources :plans, only: [:index]
     end
     resources :plans do
-      resources :share, only: [:create]
+      resources :shares, only: [:create]
     end
     resources :drills do
-      resources :share, only: [:create]
+      resources :shares, only: [:create]
     end
     resources :users
     resources :organizations
     resources :libraries do
-      resources :share, only: [:create]
+      resources :shares, only: [:create]
     end
   end
   

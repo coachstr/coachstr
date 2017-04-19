@@ -110,6 +110,26 @@ class Card extends React.Component {
         } else if (!sharedEmail.includes('@') || (sharedEmail.slice(sharedEmail.length - 4, sharedEmail.length - 3) !== '.')) {
             alert('You must enter a valid email address')
         } else {
+            console.log('/api/drills/' + this.props.id + '/shares')
+            fetch('/api/drills/' + this.props.id + '/shares', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    email: sharedEmail
+                })
+            })
+
+                .then(function (response) {
+                    return response.json()
+                })
+
+                .then(function (response) {
+                    console.log(response)
+                })
+
             this.closeEmail()
             alert('You have shared this drill with ' + this.state.sharedEmail)
             this.setState({ sharedEmail : ''})
@@ -149,7 +169,7 @@ class Card extends React.Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className="pull-left" onClick={() => this.viewDrill(this.props.planId)}>Edit</Button>
-                        <Button className="pull-right" onClick={this.openEmail}>Share Drill</Button>
+                        <Button className="pull-right" onClick={this.openEmail}>Share</Button>
                     </Modal.Footer>
                 </Modal>
 
