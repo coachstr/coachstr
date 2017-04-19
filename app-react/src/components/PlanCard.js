@@ -19,6 +19,7 @@ class PlanCard extends React.Component {
 
         // this.addToPlan = this.addToPlan.bind(this)
         this.viewPlan = this.viewPlan.bind(this)
+        this.editPlan = this.editPlan.bind(this)
         this.getTags = this.getTags.bind(this)
         this.close = this.close.bind(this)
         this.open = this.open.bind(this)
@@ -43,6 +44,10 @@ class PlanCard extends React.Component {
     viewPlan() {
         console.log(this.props.id)
         browserHistory.push('/drills/' + this.props.id)
+    }
+
+    editPlan() {
+        browserHistory.push('/plan/' + this.props.id)
     }
 
     setFields() {
@@ -103,7 +108,8 @@ class PlanCard extends React.Component {
                         </ul>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className="text-center" onClick={this.viewPlan}>Edit Plan</Button>
+                        <Button  className="pull-right" onClick={this.viewPlan}>Reset</Button>
+                        <Button className="pull-left" onClick={this.editPlan}>Edit</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

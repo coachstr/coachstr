@@ -11,7 +11,7 @@ class Plan extends React.Component {
 
         this.newPlan = this.newPlan.bind(this)
         this.getInfo = this.getInfo.bind(this)
-        // this.findIndex = this.findIndex.bind(this)
+        this.findIndex = this.findIndex.bind(this)
 
         this.state = {
             title: '',
@@ -30,13 +30,13 @@ class Plan extends React.Component {
 
     getInfo() {
         var token = sessionStorage.getItem('token');
-        let id = this.props.params.drillId
+        let id = this.props.params.planId
 
         if (token === null) {
             alert('You must be signed in to create plans')
             browserHistory.push('/')
         } else {
-            fetch('/api/drills?token=' + token)
+            fetch('/api/plans?token=' + token)
                 .then(function (response) {
                     return response.json();
                 })
@@ -45,18 +45,21 @@ class Plan extends React.Component {
         }
     }
 
-    // findIndex() {
-    //     for (var i = 0; i < this.state.drills.length; i++) {
-    //         if (this.state.drills[i].id == this.props.params.drillId) {
-    //             this.setState({ title: this.state.drills[i].title})
-    //             this.setState({ description: this.state.drills[i].description})
-    //             this.setState({ duration: this.state.drills[i].duration})
-    //         } else {
-    //             console.log("no match state" + this.state.drills[i].id)
-    //             console.log('this is not ' + this.props.params.drillId)
-    //         }
-    //     }
-    // }
+    findIndex() {
+        var incomingTagArray = new Array()
+        for (var i = 0; i < this.state.plans.length; i++) {
+            if (this.state.plans[i].id == this.props.params.planId) {
+                this.setState({ title: this.state.plans[i].title})
+                for (var j = 0; j < this.state.plans[i].tags.length; j++) {
+                    incomingTagArray: incomingTagArray.push(this.state.plans[i].tags[j].name)
+                    this.setState({tagString: incomingTagArray.toString()})
+                }
+            } else {
+                console.log("no match state" + this.state.plans[i].id)
+                console.log('this is not ' + this.props.params.planId)
+            }
+        }
+    }
 
     newPlan() {
         var title = this.state.title
@@ -74,7 +77,7 @@ class Plan extends React.Component {
         if (title === '') {
             alert('You must complete all fields')
         }
-        else {
+        else if (this.props.params.planId == 'undefined') {
             console.log("params = " + this.props.params.planId)
             fetch('/api/plans', {
                 method: 'POST',
@@ -90,6 +93,26 @@ class Plan extends React.Component {
             })
 
             alert('Your plan has been saved')
+
+            browserHistory.push('/plans')
+
+            console.log(newPlanObject)
+        } else {
+             console.log("params = " + this.props.params.planId)
+            fetch('/api/plans/' + id, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: title,
+                    token: token,
+                    tags: tags,
+                    id: id
+                })
+            })
+
+            alert('Your plan has been updated')
 
             browserHistory.push('/plans')
 
