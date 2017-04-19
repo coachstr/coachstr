@@ -15,7 +15,7 @@ class Drill < ApplicationRecord
   validates :default_avatar,  require: false
   validates :duration, numericality: true
 
-  default_scope {order('lower(title) asc')}
+  # default_scope {order('lower(title) asc')}
 
   def personage(version = :standard)
     if drill_pic?
