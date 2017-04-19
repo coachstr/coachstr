@@ -12,6 +12,7 @@ class Plan extends React.Component {
         this.newPlan = this.newPlan.bind(this)
         this.getInfo = this.getInfo.bind(this)
         this.findIndex = this.findIndex.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
 
         this.state = {
             title: '',
@@ -49,10 +50,10 @@ class Plan extends React.Component {
         var incomingTagArray = new Array()
         for (var i = 0; i < this.state.plans.length; i++) {
             if (this.state.plans[i].id == this.props.params.planId) {
-                this.setState({ title: this.state.plans[i].title})
+                this.setState({ title: this.state.plans[i].title })
                 for (var j = 0; j < this.state.plans[i].tags.length; j++) {
                     incomingTagArray: incomingTagArray.push(this.state.plans[i].tags[j].name)
-                    this.setState({tagString: incomingTagArray.toString()})
+                    this.setState({ tagString: incomingTagArray.toString() })
                 }
             } else {
                 console.log("no match state" + this.state.plans[i].id)
@@ -94,11 +95,11 @@ class Plan extends React.Component {
 
             alert('Your plan has been saved')
 
-            browserHistory.push('/plans')
+            browserHistory.push('/drills/' + id)
 
             console.log(newPlanObject)
         } else {
-             console.log("params = " + this.props.params.planId)
+            console.log("params = " + this.props.params.planId)
             fetch('/api/plans/' + id, {
                 method: 'PATCH',
                 headers: {
@@ -121,6 +122,13 @@ class Plan extends React.Component {
 
     }
 
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.newPlan()
+        }
+    }
+
+
 
     render() {
 
@@ -130,8 +138,8 @@ class Plan extends React.Component {
             <div className="container">
                 <br />
                 <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/plans')}><i className="material-icons left">fast_rewind</i>Back</a>
-                <input type="text" className="form-control" placeholder="Enter plan title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
-                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} />
+                <input type="text" className="form-control" placeholder="Enter plan title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
             </div>
             <br />
 

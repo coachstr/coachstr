@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import {Row, Input } from 'react-materialize'
+import { Row, Input } from 'react-materialize'
 
 
 class Signin extends Component {
