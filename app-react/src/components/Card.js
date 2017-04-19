@@ -1,6 +1,7 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 import { Modal, Button } from 'react-bootstrap'
+import { Row, Input } from 'react-materialize'
 
 import Chip from './Chip'
 
@@ -11,7 +12,10 @@ class Card extends React.Component {
 
         this.state = {
             drills: [],
-            tags: []
+            tags: [],
+            showModal: false,
+            showEmailModal: false,
+            sharedEmail: ''
         }
 
         this.addToPlan = this.addToPlan.bind(this)
@@ -20,6 +24,9 @@ class Card extends React.Component {
         this.getTags = this.getTags.bind(this)
         this.close = this.close.bind(this)
         this.open = this.open.bind(this)
+        this.closeEmail = this.closeEmail.bind(this)
+        this.openEmail = this.openEmail.bind(this)
+        this.shareEmail = this.shareEmail.bind(this)
 
     }
 
@@ -40,7 +47,7 @@ class Card extends React.Component {
 
     viewDrill(planId) {
         console.log('card plandId ' + planId)
-        browserHistory.push('/drill/' + planId  + '/' + this.props.id)
+        browserHistory.push('/drill/' + planId + '/' + this.props.id)
     }
 
     setFields() {
@@ -87,6 +94,34 @@ class Card extends React.Component {
         this.setState({ showModal: true });
     }
 
+    closeEmail() {
+        this.setState({ showEmailModal: false });
+    }
+
+    openEmail() {
+        this.close()
+        this.setState({ showEmailModal: true });
+    }
+
+    shareEmail() {
+        var sharedEmail = this.state.sharedEmail
+        if (sharedEmail === '') {
+            alert('You must enter an email address')
+        } else if (!sharedEmail.includes('@') || (sharedEmail.slice(sharedEmail.length - 4, sharedEmail.length - 3) !== '.')) {
+            alert('You must enter a valid email address')
+        } else {
+            this.closeEmail()
+            alert('You have shared this drill with ' + this.state.sharedEmail)
+            this.setState({ sharedEmail : ''})
+        }
+}
+
+    handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            this.shareEmail()
+        }
+    }
+
     render() {
         let tags = this.props.tags.map((tag, key) => {
             return <Chip tag={tag.name} key={key} />
@@ -95,7 +130,7 @@ class Card extends React.Component {
         return <div className="col-sm-6 col-m-4" >
             <div className="card blue-grey darken-1 small drillCard">
                 <div className="card-content white-text" onClick={this.open}>
-                {/*<div className="card-content white-text" onClick={() => this.viewDrill(this.props.planId)}>*/}
+                    {/*<div className="card-content white-text" onClick={() => this.viewDrill(this.props.planId)}>*/}
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
                     <p>{this.props.description}</p>
                 </div>
@@ -109,11 +144,24 @@ class Card extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         {this.props.description}
-                        <hr/>
+                        <hr />
                         {tags}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className="text-center" onClick={() => this.viewDrill(this.props.planId)}>Edit Drill</Button>
+                        <Button className="pull-left" onClick={() => this.viewDrill(this.props.planId)}>Edit</Button>
+                        <Button className="pull-right" onClick={this.openEmail}>Share Drill</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={this.state.showEmailModal} onHide={this.closeEmail}>
+                    <Modal.Header closeButton className="modal-header text-center">
+                        <Modal.Title>Share {this.props.title}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Input s={12} label="Email" type="text" id="email" value={this.state.sharedEmail} onChange={(e) => this.setState({ sharedEmail: e.target.value })}  onKeyPress={(e) => this.handleKeyPress(e)}/>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={this.shareEmail}>Share Drill</Button>
                     </Modal.Footer>
                 </Modal>
 
