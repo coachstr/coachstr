@@ -4,17 +4,10 @@ class SharesController < ApplicationController
   before_action :find_drill
 
   def create
-    if params[:share][:email].blank?
-      flash[:warning] = "Please enter an email"
-      render :new
-    else
-      if params[:drill_id]
-        DrillMailer.share(@drill, params[:share][:email]).deliver
-        flash[:success] = "Shared"
-      else
-        PlanMailer.share(@plan, params[:share][:email]).deliver
-        flash[:success] = "Shared"
-      end
+    if params[:drill_id]
+      DrillMailer.share(@drill, params[:share][:email]).deliver
+    elsif params[:plan_id]
+      PlanMailer.share(@plan, params[:share][:email]).deliver
     end
   end
 

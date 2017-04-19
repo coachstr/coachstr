@@ -10,6 +10,7 @@ class DrillSerializer < ActiveModel::Serializer
    has_many :tags
    has_many :plans
    has_many :libraries
+   belongs_to :user
 
   def drills
     titles = []

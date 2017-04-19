@@ -1,7 +1,10 @@
 class PlanSerializer < ActiveModel::Serializer
-  attributes :id, :title, :total_duration
+  attributes  :id,
+              :title,
+              :total_duration
   has_many :tags
   has_many :drills
+  belongs_to :user
 
   def drills
     titles = []
