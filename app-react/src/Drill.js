@@ -47,6 +47,7 @@ class Drill extends React.Component {
     }
 
     findIndex() {
+        console.log(this.props.params.planId)
         var incomingTagArray = new Array()
         for (var i = 0; i < this.state.drills.length; i++) {
             if (this.state.drills[i].id == this.props.params.drillId) {
