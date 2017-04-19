@@ -17,7 +17,7 @@ class Drills extends Component {
       incomingPlanDrills: [],
       drillTitles: [],
       planTitle: '',
-      // planNumber: '',
+      incomingTags: [],
       id: ''
     }
 
@@ -25,6 +25,7 @@ class Drills extends Component {
     this.getDrills = this.getDrills.bind(this)
     this.getPlanDrills = this.getPlanDrills.bind(this)
     this.getPlanName = this.getPlanName.bind(this)
+    this.getPlanTags = this.getPlanTags.bind(this)
     this.viewNewDrills = this.viewNewDrills.bind(this)
     this.savePlan = this.savePlan.bind(this)
 
@@ -45,6 +46,7 @@ class Drills extends Component {
     this.getDrills()
     this.getPlanDrills()
     this.getPlanName()
+    this.getPlanTags()
   }
 
   getDrills() {
@@ -94,6 +96,19 @@ class Drills extends Component {
       .then(response => this.setState({ planTitle: response.plan.title }))
   }
 
+  getPlanTags() {
+    var token = sessionStorage.getItem('token');
+    let id = this.props.params.planId
+    console.log('getplanname')
+
+    fetch('/api/plans/' + id + '?token=' + token)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(response => this.setState({ incomingTags: response.plan.tags }))
+      .then(response => console.log(this.state.incomingTags))
+  }
+
   savePlan() {
     let id = this.props.params.planId
     var token = sessionStorage.getItem('token')
@@ -104,6 +119,7 @@ class Drills extends Component {
       },
       body: JSON.stringify({
         drills: this.state.planDrills,
+        tags: this.state.incomingTags,
         token: token
       })
     })
