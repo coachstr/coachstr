@@ -9,7 +9,7 @@ class PlanDrill extends React.Component {
   }
   
     render() {
-        return <li>{this.props.drill}</li>
+        return <li>{this.props.index}. {this.props.drill}</li>
     }
 }
 

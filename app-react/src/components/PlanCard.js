@@ -77,8 +77,8 @@ class PlanCard extends React.Component {
         })
 
         let drills = this.props.drills.map((drill, key) => {
-            console.log(drill.title)
-            return <PlanDrill drill={drill.title} />
+            console.log(drill.title, key)
+            return <PlanDrill key={key} drill={drill.title} index={key + 1}/>
         })
 
         return <div className="col-sm-4 col-m-4" >
@@ -106,8 +106,6 @@ class PlanCard extends React.Component {
                         <Button className="text-center" onClick={this.viewPlan}>Edit Plan</Button>
                     </Modal.Footer>
                 </Modal>
-
-                {/*<a className="btn-floating waves-effect waves-light red cardFab" onClick={this.addToPlan}><i className="material-icons">add</i></a>*/}
             </div>
 
 
