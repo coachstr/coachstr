@@ -81,9 +81,6 @@ class Signup extends Component {
                 <div className="col s6 m6 container signinCard text-center">
                     {/*<h2 className="header signinCard">Sign In</h2>*/}
                     <div className="card horizontal">
-                        <div className="card-image">
-                            <img src="https://unsplash.it/200" alt="Logo" id="signinImage" />
-                        </div>
                         <div className="card-stacked">
                             <div className="card-content">
                               <Row>

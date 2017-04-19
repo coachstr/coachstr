@@ -11,14 +11,11 @@ class Plans extends Component {
     super(props)
 
     this.state = {
-      plans: [],
-      showModal: false
+      plans: []
     }
 
     this.addPlan = this.addPlan.bind(this)
     this.getPlans = this.getPlans.bind(this)
-    this.open = this.open.bind(this)
-    this.close = this.close.bind(this)
 
   }
 
@@ -46,20 +43,12 @@ class Plans extends Component {
     }
   }
 
-      close() {
-        this.setState({ showModal: false });
-    }
-
-    open() {
-        this.setState({ showModal: true });
-    }
-
   render() {
     console.log('plans ' + this.state.plans)
 
     let plans = this.state.plans.map((plan, key) => {
       console.log(plan)
-      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags} duration={plan.total_duration} drills={plan.drills} />
+      return <PlanCard key={key} id={plan.id} title={plan.title} tags={plan.tags} duration={plan.total_duration} drills={plan.drills}  />
     })
 
     if (plans.length === 0) {
@@ -95,21 +84,6 @@ class Plans extends Component {
           <h2 className="text-center">Plans</h2>
           {plans}
         </div>
-
-                        <Modal show={this.state.showModal} onHide={this.close} bsSize="small">
-                    <Modal.Header closeButton className="modal-header">
-                        <Modal.Title>{this.props.title}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <ul>
-                        {/*{drills}*/}
-                        </ul>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button className="text-center" onClick={this.viewPlan}>Edit Plan</Button>
-                    </Modal.Footer>
-                </Modal>
-
       </div>
     );
     }
