@@ -86,6 +86,8 @@ class PlanCard extends React.Component {
             return <PlanDrill key={key} drill={drill.title} index={key + 1}/>
         })
 
+        console.log(this.props.drills.length)
+
         return <div className="col-sm-4 col-m-4" >
             <div className="card blue-grey darken-1 small" onClick={this.open}>
                 <div className="card-content white-text">
@@ -106,9 +108,11 @@ class PlanCard extends React.Component {
                         <ul>
                         {drills}
                         </ul>
+                        <hr/>
+                        {tags}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button  className="pull-right" onClick={this.viewPlan}>Reset</Button>
+                        <Button  className="pull-right" onClick={this.viewPlan}>{this.props.drills.length === 0 ? 'Add Drills' : 'Reset'}</Button>
                         <Button className="pull-left" onClick={this.editPlan}>Edit</Button>
                     </Modal.Footer>
                 </Modal>
