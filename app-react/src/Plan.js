@@ -11,6 +11,7 @@ class Plan extends React.Component {
 
         this.newPlan = this.newPlan.bind(this)
         this.getInfo = this.getInfo.bind(this)
+        this.getDrills = this.getDrills.bind(this)
         this.findIndex = this.findIndex.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
 
@@ -27,6 +28,7 @@ class Plan extends React.Component {
 
     componentWillMount() {
         this.getInfo()
+        this.getDrills()
     }
 
     getInfo() {
@@ -67,6 +69,7 @@ class Plan extends React.Component {
         var tags = this.state.tagString.split(',')
         var token = sessionStorage.getItem('token')
         var id = this.props.params.planId
+        var drills = this.state.drills
 
         var newPlanObject = {
             title,
@@ -88,14 +91,13 @@ class Plan extends React.Component {
                 body: JSON.stringify({
                     title: title,
                     token: token,
-                    tags: tags,
-                    id: id
+                    tags: tags
                 })
             })
 
             alert('Your plan has been saved')
 
-            browserHistory.push('/drills/' + id)
+            browserHistory.push('/plans')
 
             console.log(newPlanObject)
         } else {
@@ -106,6 +108,7 @@ class Plan extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    drills: drills,
                     title: title,
                     token: token,
                     tags: tags,
@@ -121,6 +124,17 @@ class Plan extends React.Component {
         }
 
     }
+
+    getDrills() {
+    var token = sessionStorage.getItem('token');
+    let id = this.props.params.planId
+
+      fetch('/api/drills?token=' + token)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(response => this.setState({ drills: response.drills }))
+  }
 
     handleKeyPress(e) {
         if (e.key === 'Enter') {
