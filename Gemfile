@@ -54,7 +54,6 @@ gem 'faker'
 # gem 'rollbar'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-  gem 'rack-cors'
 # Use Capistrano for deployment
 # Look into this
 # gem 'capistrano-rails', group: :development
@@ -65,6 +64,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.5'
   gem 'capybara', '~> 2.5'
   gem 'minitest-rails'
+  gem 'rack-cors'
 end
 
 group :development do

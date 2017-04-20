@@ -127,11 +127,10 @@ class Card extends React.Component {
                 })
 
                 .then(function (response) {
-                    console.log(response)
+                    alert(response)
                 })
 
             this.closeEmail()
-            alert('You have shared this drill with ' + this.state.sharedEmail)
             this.setState({ sharedEmail : ''})
         }
 }
