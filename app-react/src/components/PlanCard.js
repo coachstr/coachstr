@@ -112,8 +112,8 @@ class PlanCard extends React.Component {
                         {tags}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button  className="pull-right" onClick={this.viewPlan}>{this.props.drills.length === 0 ? 'Add Drills' : 'Reset'}</Button>
-                        <Button className="pull-left" onClick={this.editPlan}>Edit</Button>
+                        <Button  className="pull-right" onClick={this.viewPlan}>{this.props.drills.length === 0 ? 'Add' : 'Clear'}</Button>
+                        <Button className="pull-left" onClick={this.editPlan}>Edit Details</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

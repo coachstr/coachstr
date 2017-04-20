@@ -167,7 +167,7 @@ class Card extends React.Component {
                         {tags}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button className="pull-left" onClick={() => this.viewDrill(this.props.planId)}>Edit</Button>
+                        <Button className="pull-left" onClick={() => this.viewDrill(this.props.planId)}>Edit Details</Button>
                         <Button className="pull-right" onClick={this.openEmail}>Share</Button>
                     </Modal.Footer>
                 </Modal>
