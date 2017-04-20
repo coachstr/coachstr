@@ -153,7 +153,7 @@ class Card extends React.Component {
                     <div className="card-title">{this.props.title}<span> ({this.props.duration} mins)</span></div>
                     <p>{this.props.description}</p>
                 </div>
-                <div className="card-action">
+                <div className="card-action" onClick={this.open}>
                     {tags}
                 </div>
 

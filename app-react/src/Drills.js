@@ -164,7 +164,6 @@ class Drills extends Component {
                 <div className="card-action">
                     <div className="chip">Example Tag</div>
                 </div>
-                <a className="btn-floating waves-effect waves-light red cardFab"><i className="material-icons">add</i></a>
                 </div>
                 </div>
 

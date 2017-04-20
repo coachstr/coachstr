@@ -96,7 +96,7 @@ class PlanCard extends React.Component {
                         {drills}
                     </ul>
                 </div>
-                <div className="card-action">
+                <div className="card-action" onClick={this.open}>
                     {tags}
                 </div>
 
