@@ -153,7 +153,20 @@ class Drills extends Component {
           <div className="container">
 
             <h2 className="text-center">Drills</h2>
-            <h3 className="text-center">It looks like you don't have any drills. Click the button to add one.</h3>
+            <h4 className="text-center">It looks like you don't have any drills. Click the plus button to add one.</h4>
+
+            <div className="col-sm-6 col-m-4" >
+            <div className="card blue-grey darken-1 small drillCard">
+                <div className="card-content white-text">
+                    <div className="card-title">Example Drill<span> (15 mins)</span></div>
+                    <p>This is the an example drill.</p>
+                </div>
+                <div className="card-action">
+                    <div className="chip">Example Tag</div>
+                </div>
+                <a className="btn-floating waves-effect waves-light red cardFab"><i className="material-icons">add</i></a>
+                </div>
+                </div>
 
           </div>
 
