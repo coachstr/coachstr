@@ -87,6 +87,8 @@ class Drill extends React.Component {
         }
         if (title === '' || description === '' || duration === '') {
             alert('You must complete all fields')
+        } else if (duration.length > 3) {
+            alert('Duration may only be three digits long')
         }
         else if (this.props.params.drillId == 'undefined') {
             console.log("params = " + this.props.params.drillId)

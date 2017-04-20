@@ -63,7 +63,22 @@ class Plans extends Component {
         <div className="container">
 
           <h2 className="text-center">Plans</h2>
-          <h3 className="text-center">It looks like you don't have any plans. Click the button to add one.</h3>
+          <h4 className="text-center">It looks like you don't have any plans. Click the plus button to add one.</h4>
+          <div className="col-sm-4 col-m-4" >
+            <div className="card blue-grey darken-1 small">
+                <div className="card-content white-text">
+                    <div className="card-title">Example Plan<span> (15 mins)</span></div>
+                    <ul>
+                        <li>Drill #1</li>
+                        <li>Drill #2</li>
+                        <li>Drill #3</li>
+                    </ul>
+                </div>
+                <div className="card-action">
+                    <div className="chip">Example Tag</div>
+                </div>
+                </div>
+                </div>
 
         </div>
 
