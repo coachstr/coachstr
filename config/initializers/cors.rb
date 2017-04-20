@@ -11,7 +11,7 @@
 # Handle Cross-Origin Resource Sharing (CORS) in order to accept cross-origin AJAX requests.
 
 # Read more: https://github.com/cyu/rack-cors
-if Rails.env.production?
+unless Rails.env.production?
   Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
       origins '*'
