@@ -69,9 +69,9 @@ class Plans extends Component {
                 <div className="card-content white-text">
                     <div className="card-title">Example Plan<span> (15 mins)</span></div>
                     <ul>
-                        <li>Drill #1</li>
-                        <li>Drill #2</li>
-                        <li>Drill #3</li>
+                        <li>1. Drill #1</li>
+                        <li>2. Drill #2</li>
+                        <li>3. Drill #3</li>
                     </ul>
                 </div>
                 <div className="card-action">
