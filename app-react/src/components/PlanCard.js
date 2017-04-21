@@ -100,7 +100,7 @@ class PlanCard extends React.Component {
                     {tags}
                 </div>
 
-                <Modal show={this.state.showModal} onHide={this.close} bsSize="small">
+                <Modal show={this.state.showModal} onHide={this.close}>
                     <Modal.Header closeButton className="modal-header text-center">
                         <Modal.Title>{this.props.title}</Modal.Title>
                     </Modal.Header>
@@ -112,7 +112,7 @@ class PlanCard extends React.Component {
                         {tags}
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button  className="pull-right" onClick={this.viewPlan}>{this.props.drills.length === 0 ? 'Add' : 'Clear'}</Button>
+                        <Button  className="pull-right" onClick={this.viewPlan}>{this.props.drills.length === 0 ? 'Add Drills' : 'Edit Drills'}</Button>
                         <Button className="pull-left" onClick={this.editPlan}>Edit Details</Button>
                     </Modal.Footer>
                 </Modal>

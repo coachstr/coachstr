@@ -72,16 +72,18 @@ class Card extends React.Component {
         alert('This drill has been added to your plan')
     }
 
-    addDrill(drillId, drillTitle, drillIdArray, drillTitleArray, getPlanDrills) {
-        if (drillIdArray.length === 0) {
-            drillIdArray = drillIdArray.push(drillId)
-            drillTitleArray = drillTitleArray.push(drillTitle)
+    addDrill(drillId, drillTitle, drillIdArray, drillTitleArray, incomingDrillArray, addItemToCurrent, isIncoming) {
+        if (!isIncoming) {
+            console.log('fromIncoming ' + isIncoming)
+            drillIdArray.push(drillId)
+            drillTitleArray.push(drillTitle)
         } else {
-            drillIdArray = drillIdArray.push(drillId)
-            drillTitleArray = drillTitleArray.push(drillTitle)
+            console.log('fromIncoming ' + isIncoming)
+            drillIdArray.push(drillId)
+            drillTitleArray.push(drillTitle)
         }
 
-        getPlanDrills()
+        addItemToCurrent()
 
         // alert('you have added ' + drillTitle.title)
     }
@@ -131,9 +133,9 @@ class Card extends React.Component {
                 })
 
             this.closeEmail()
-            this.setState({ sharedEmail : ''})
+            this.setState({ sharedEmail: '' })
         }
-}
+    }
 
     handleKeyPress(e) {
         if (e.key === 'Enter') {
@@ -177,14 +179,14 @@ class Card extends React.Component {
                         <Modal.Title>Share {this.props.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Input s={12} label="Email" type="text" id="email" value={this.state.sharedEmail} onChange={(e) => this.setState({ sharedEmail: e.target.value })}  onKeyPress={(e) => this.handleKeyPress(e)}/>
+                        <Input s={12} label="Email" type="text" id="email" value={this.state.sharedEmail} onChange={(e) => this.setState({ sharedEmail: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.shareEmail}>Share Drill</Button>
                     </Modal.Footer>
                 </Modal>
 
-                <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drill, this.props.drillIdArray, this.props.drillTitleArray, this.props.addItemFunction)}><i className="material-icons">add</i></a>
+                <a className="btn-floating waves-effect waves-light red cardFab" onClick={() => this.addDrill(this.props.id, this.props.drill, this.props.drillIdArray, this.props.drillTitleArray, this.props.incomingDrillArray, this.props.addItemFunction, this.props.isIncoming)}><i className="material-icons">add</i></a>
             </div>
 
         </div>
