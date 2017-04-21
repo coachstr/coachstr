@@ -18,28 +18,32 @@ class Drills extends Component {
       drillTitles: [],
       planTitle: '',
       incomingTags: [],
-      id: ''
+      id: '',
+      incomingIds: [],
+      fromIncoming: true
     }
 
-    // this.addDrill = this.addDrill.bind(t his)
+    this.clearPlan = this.clearPlan.bind(this)
     this.getDrills = this.getDrills.bind(this)
     this.getPlanDrills = this.getPlanDrills.bind(this)
     this.getPlanName = this.getPlanName.bind(this)
+    this.getPlanIds = this.getPlanIds.bind(this)
     this.getPlanTags = this.getPlanTags.bind(this)
     this.viewNewDrills = this.viewNewDrills.bind(this)
     this.savePlan = this.savePlan.bind(this)
+    this.loopIds = this.loopIds.bind(this)
 
   }
 
   addDrill(drill) {
     if (this.state.drills.length === 0) {
       this.setState.drills = this.state.drills.push(drill)
-      console.log("no drills from adddrill" + this.state.drills)
+      // console.log("no drills from adddrill" + this.state.drills)
     } else {
       this.setState.drills = this.state.drills.push(drill)
-      console.log("drills from adddrill" + this.state.drills)
+      // console.log("drills from adddrill" + this.state.drills)
     }
-    console.log('function from drills to card' + this.state.drills)
+    // console.log('function from drills to card' + this.state.drills)
   }
 
   componentWillMount() {
@@ -47,6 +51,7 @@ class Drills extends Component {
     this.getPlanDrills()
     this.getPlanName()
     this.getPlanTags()
+    this.getPlanIds()
   }
 
   getDrills() {
@@ -66,28 +71,58 @@ class Drills extends Component {
   }
 
   getPlanDrills() {
-    // var token = sessionStorage.getItem('token');
-    // let id = this.props.params.planId
+    var token = sessionStorage.getItem('token');
+    let id = this.props.params.planId
     // console.log('getplandrills')
 
-    // fetch('/api/plans/' + id + '?token=' + token)
-    //   .then(function (response) {
-    //     return response.json();
-    //   })
-    //   .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
-      // .then(response => this.setState({planNumber : this.state.incomingPlanDrills.length}))
+    fetch('/api/plans/' + id + '?token=' + token)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(response => this.setState({ incomingPlanDrills: response.plan.drills }))
   }
 
   viewNewDrills() {
     this.setState({ incomingPlanDrills: this.state.drillTitles })
     // this.setState({planNumber : this.state.drillTitles.length})
+    // console.log(this.state.drillTitles)
+  }
+
+  getPlanIds() {
+    var token = sessionStorage.getItem('token');
+    let id = this.props.params.planId
+    var incomingDrillIds = []
+    var incomingDrillTitles = []
+    // console.log('getplanname')
+
+    fetch('/api/plans/' + id + '?token=' + token)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(response => this.loopIds(incomingDrillIds, incomingDrillTitles, response))
+      .then(blah => console.log(incomingDrillIds))
+      .then(blahblah => this.setState({planDrills : incomingDrillIds}))
+      .then(blahblah => this.setState({drillTitles : incomingDrillTitles}))
+      .then(blahblahblah => console.log(incomingDrillTitles))
+ 
+     
+  }
+
+  loopIds(incomingDrillIds, incomingDrillTitles, response) {
+    for (var i=0; i < response.plan.drills.length; i++) {
+      incomingDrillIds.push(response.plan.drills[i].id)
+      incomingDrillTitles.push(response.plan.drills[i])
+      
+  }
+    console.log(incomingDrillIds)
+    console.log(incomingDrillTitles)
     console.log(this.state.drillTitles)
   }
 
   getPlanName() {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
-    console.log('getplanname')
+    // console.log('getplanname')
 
     fetch('/api/plans/' + id + '?token=' + token)
       .then(function (response) {
@@ -99,14 +134,14 @@ class Drills extends Component {
   getPlanTags() {
     var token = sessionStorage.getItem('token');
     let id = this.props.params.planId
-    console.log('getplanname')
+    // console.log('getplanname')
 
     fetch('/api/plans/' + id + '?token=' + token)
       .then(function (response) {
         return response.json();
       })
       .then(response => this.setState({ incomingTags: response.plan.tags }))
-      .then(response => console.log(this.state.incomingTags))
+      // .then(response => console.log(this.state.incomingTags))
   }
 
   savePlan() {
@@ -123,21 +158,35 @@ class Drills extends Component {
         token: token
       })
     })
-    console.log(this.state.planDrills)
+    // console.log(this.state.planDrills)
     browserHistory.push('/plans')
     alert('Your plan has been saved ')
   }
 
+  clearPlan() {
+    this.setState({incomingPlanDrills : []})
+    this.setState({planDrills: []})
+    this.setState({fromIncoming: false})
+    this.setState({drillTitles: []})
+  }
+
   render() {
 
+    // console.log(this.state.incomingPlanDrills)
+    console.log(this.state.planDrills)
+    console.log(this.state.drillTitles)
+    // console.log("from incoming" + this.state.fromIncoming)
+
+      // console.log(this.state.incomingIds)
+
     let incomingPlanDrills = this.state.incomingPlanDrills.map((incomingDrill, key) => {
-      console.log(incomingDrill)
+      // console.log(incomingDrill)
       return <PlanItem key={key} title={incomingDrill.title} />
     })
 
     let drills = this.state.drills.map((drill, key) => {
-      console.log(drill)
-      return <Card key={key} id={drill.id} drill={drill} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillIdArray={this.state.planDrills} planId={this.props.params.planId} drillTitleArray={this.state.drillTitles} addItemFunction={this.viewNewDrills}
+      // console.log(drill)
+      return <Card key={key} id={drill.id} drill={drill} title={drill.title} description={drill.description} duration={drill.duration} tags={drill.tags} drillIdArray={this.state.planDrills} planId={this.props.params.planId} drillTitleArray={this.state.drillTitles} incomingDrillArray={this.state.incomingPlanDrills} addItemFunction={this.viewNewDrills} isIncoming={this.state.fromIncoming}
       />
     })
 
@@ -188,6 +237,7 @@ class Drills extends Component {
               <ul className="collection planItems">
                 {incomingPlanDrills}
                 <li className="collection-item text-center savePlan" onClick={this.savePlan}>Save Plan</li>
+                <li className="collection-item text-center clearPlan" onClick={this.clearPlan}>Clear Plan</li>
               </ul>
             </div>
 
