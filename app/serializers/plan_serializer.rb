@@ -7,11 +7,11 @@ class PlanSerializer < ActiveModel::Serializer
   belongs_to :user
 
   def drills
-    titles = []
-    object.drills.pluck(:title).each do |title|
-      titles << {title: title}
+    id_titles = []
+    object.drills.pluck(:title, :id).each do |title, id|
+      id_titles << {title: title, id: id}
     end
-    return titles
+    return id_titles
   end
 
   def tags
