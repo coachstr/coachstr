@@ -46,17 +46,7 @@ gem 'kaminari', '~> 0.14'
 gem 'shoulda', '~> 3.5.0'
 gem 'carrierwave'
 gem 'cloudinary'
-# gem 'ffaker'
 gem 'faker'
-# gem 'ransack'
-# gem 'pg_search'
-# gem 'rails_admin', '1.1.0'
-# gem 'rollbar'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# Use Capistrano for deployment
-# Look into this
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
