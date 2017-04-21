@@ -50,16 +50,17 @@ class Signup extends Component {
             })
                 .then(function (response) {
                     return response.json();
+                    console.log(response)
                 })
                 .then(function (response) {
-                    console.log(response.user.token);
+                    console.log(response)
 
-                    if (response.user.token) {
+                    if (response.user) {
                         sessionStorage.setItem('token', response.user.token)
                         browserHistory.push('/plans')
                     }
                     else {
-                        alert('Sign Up Error: ' + response)
+                        alert(response)
                     }
                 })
         }
