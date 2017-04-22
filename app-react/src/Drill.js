@@ -164,7 +164,7 @@ class Drill extends React.Component {
                 </div>
                 <input type="number" className="form-control" placeholder="Duration (in mins)" value={this.state.duration} onChange={(e) => this.setState({ duration: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
 
-                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                <input type="text" className="form-control" placeholder="Enter tags (Comma,Separated,Tags,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
             </div>
             <br />
 

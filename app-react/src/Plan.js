@@ -153,7 +153,7 @@ class Plan extends React.Component {
                 <br />
                 <a className="waves-effect waves-light btn backButton" onClick={() => browserHistory.push('/plans')}><i className="material-icons left">fast_rewind</i>Back</a>
                 <input type="text" className="form-control" placeholder="Enter plan title" value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
-                <input type="text" className="form-control" placeholder="Enter tags (1,2,3,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
+                <input type="text" className="form-control" placeholder="Enter tags (Comma,Separated,Tags,...)" value={this.state.tagString} onChange={(e) => this.setState({ tagString: e.target.value })} onKeyPress={(e) => this.handleKeyPress(e)} />
             </div>
             <br />
 
