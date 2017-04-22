@@ -92,7 +92,7 @@ class Signin extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="col s6 m6 container signinCard">
+                <div className="col s6 m6 container marketingCard">
                     <div className="card horizontal">
                         <div className="card-stacked">
                             <div className="card-content">
