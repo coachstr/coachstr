@@ -92,6 +92,17 @@ class Signin extends Component {
                         </div>
                     </div>
                 </div>
+                <div className="col s6 m6 container signinCard">
+                    <div className="card horizontal">
+                        <div className="card-stacked">
+                            <div className="card-content">
+                                <p>
+                                  Coachstr, an application that allow you to share your ideas, drills, and practice plans down your coaching tree. Coachstr allows you to develop your drills and practices and distribute them to be used by all coaches and players in your organization. It allows you to develop a talent pipeline that will last years. Get your entire organization on the same page with Coachstr.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
