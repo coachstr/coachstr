@@ -9,13 +9,13 @@ class SharesController < ApplicationController
       render json: ['This email doesn\'t belong to any users. If you are sure that this email is correct, please have them sign up. Otherwise, please try again.']
     else
       if params[:drill_id]
-        @drill = Drill.find(params[:drill_id])
+        find_drill
         DrillMailer.share(@drill, params[:share][:email]).deliver
         render json: ['Email has been sent to ' + params[:share][:email]]
-      elsif params[:plan_id]
-        @plan = Plan.find(params[:plan_id])
-        PlanMailer.share(@plan, params[:share][:email]).deliver
-        render json: ['Email has been sent to ' + params[:share][:email]]
+      # elsif params[:plan_id]
+      #   find_plan 
+      #   PlanMailer.share(@plan, params[:share][:email]).deliver
+      #   render json: ['Email has been sent to ' + params[:share][:email]]
       end
     end
   end
