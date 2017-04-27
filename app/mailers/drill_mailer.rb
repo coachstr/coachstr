@@ -1,7 +1,6 @@
 class DrillMailer < ApplicationMailer
 
   def share(drill, email)
-    binding.pry
     @drill = drill
     user = User.find_by(email: email)
     mail(to: email, subject: "Checkout this drill")
